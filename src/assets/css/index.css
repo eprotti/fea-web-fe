@@ -354,3 +354,37 @@ footer a:hover {
 .pulse-animation {
   animation: pulse 3s infinite;
 }
+
+.container-app {
+  min-height: 500px;
+}
+
+.nav-link {
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+}
+
+.dropdown-item {
+  text-transform: uppercase !important;
+  height: 45px;
+  padding-top: 10px;
+}
+
+.nav-item {
+  min-width: 180px;
+  text-align: center;
+  vertical-align: bottom;
+  border-right: 1px solid lightgray;
+}
+
+.nav-item .last{
+  border-right: none;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: gray;
+}
+
+.dropdown-menu {
+  min-width:200px;
+}

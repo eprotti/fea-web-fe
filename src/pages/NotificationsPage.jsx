@@ -3,7 +3,7 @@ import Notifications from '../components/Notifications';
 
 const NotificationsPage = () => {
   return (
-    <div className="main-container pt-5 pb-5">
+    <div className="main-container container pt-5 pb-5">
       <Notifications />
     </div>
   );
