@@ -16,6 +16,22 @@ const Notifications = () => {
     dispatch(markAllAsRead());
   };
 
+  const showSuccessToast = (message) => {
+    toast.success(
+      <div>
+        <FaCheckCircle style={{ color: 'green', fontSize: '24px', marginRight: '10px' }} />
+        <strong>Operazione completata con successo!</strong>
+        <Toast.Body>
+          {message}
+        </Toast.Body>
+      </div>,
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,  // La notifica si chiude automaticamente dopo 5 secondi
+      }
+    );
+  };
+
   return (
     <div>
       <h3>Notifications</h3>

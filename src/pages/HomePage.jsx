@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '../redux/notificationsSlice';
-import { Link } from 'react-router-dom';
-import { Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
+import { Container, Form, Button} from 'react-bootstrap';
 
 const HomePage = () => {
   const dispatch = useDispatch();
