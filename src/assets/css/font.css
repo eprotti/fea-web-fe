@@ -166,3 +166,14 @@ h3.raw-style:after {
 .text-info {
   color: #06C
 }
+
+.btn-alternative, .btn-alternative:focus, .btn-common, .btn-danger, .btn-danger:focus, .btn-default, .btn-default:focus, .btn-info, .btn-info:focus, .btn-minor, .btn-minor:focus, .button-style, .form-container #upload-list .ajax-file-upload-abort, .form-container #upload-list .ajax-file-upload-done, .form-container #upload-list .ajax-file-upload-green, .form-container #upload-list .ajax-file-upload-red, .form-container .ajax-file-upload, .form-container .upload-list .ajax-file-upload-abort, .form-container .upload-list .ajax-file-upload-done, .form-container .upload-list .ajax-file-upload-green, .form-container .upload-list .ajax-file-upload-red, .form-container .upload-list-2 .ajax-file-upload-abort, .form-container .upload-list-2 .ajax-file-upload-done, .form-container .upload-list-2 .ajax-file-upload-green, .form-container .upload-list-2 .ajax-file-upload-red, .submit-btn, .submit-btn:focus {
+  font: normal 1.3rem titilliumweb-sb !important;
+  background: #06C;
+  color: #fff;
+  padding: 0.2rem 0;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 auto;
+  border: solid 1px #06C;
+}

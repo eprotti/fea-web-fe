@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';  // Importa il file CSS per le n
 
 import DocumentoCard from '../components/DocumentoCard';
 
-const DocumentiDaFirmarePage = () => {
+const DocumentiDaCompilarePage = () => {
 
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.data);
@@ -21,7 +21,7 @@ const DocumentiDaFirmarePage = () => {
 
   return (
     <Container className="main-container pt-5 pb-5">
-      <h3>Documenti da firmare</h3>
+      <h3>Documenti da compilare</h3>
       <Row>
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>
@@ -31,7 +31,7 @@ const DocumentiDaFirmarePage = () => {
             descrizione={"descrizione"}
             dataInserimento={"2024-11-29"}
             dataScadenza={"2024-11-30"}
-            tipo={"DA_FIRMARE"}
+            tipo={"DA_COMPILARE"}
           />
 
           <DocumentoCard
@@ -39,7 +39,7 @@ const DocumentiDaFirmarePage = () => {
             descrizione={"descrizione"}
             dataInserimento={"2024-11-29"}
             dataScadenza={"2024-12-30"}
-            tipo={"DA_FIRMARE"}
+            tipo={"DA_COMPILARE"}
           />
 
           {loading && <p>Caricamento...</p>}
@@ -72,4 +72,4 @@ const DocumentiDaFirmarePage = () => {
   );
 };
 
-export default DocumentiDaFirmarePage;
+export default DocumentiDaCompilarePage;

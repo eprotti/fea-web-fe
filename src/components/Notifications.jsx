@@ -34,11 +34,16 @@ const Notifications = () => {
 
   return (
     <div>
-      <h3>Notifications</h3>
-      <Button variant="secondary" onClick={handleMarkAllAsRead}>
-        Mark all as read
-      </Button>
-      <h5 className="mt-3">Unread Notifications: {unreadCount}</h5>
+      <h3>Notifiche</h3>
+
+      <div className="d-flex justify-content-between align-items-center">
+
+        <h5 className="mt-3">Notifiche non lette: {unreadCount}</h5>
+        <Button variant="secondary" onClick={handleMarkAllAsRead}>
+          Segna tutte come già lette
+        </Button>
+      </div>
+
       <ListGroup>
         {notifications.map((notification) => (
           <ListGroupItem
