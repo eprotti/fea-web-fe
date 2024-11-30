@@ -1,4 +1,3 @@
-// reducers/userReducer.js
 
 const initialState = {
     firstName: '',

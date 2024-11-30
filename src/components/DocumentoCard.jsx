@@ -54,11 +54,11 @@ const DocumentoCard = ({ titolo, descrizione, dataInserimento, dataScadenza, tip
                     Firma documento <FaPen className="ml-2" />
                 </Button>}
 
-                {(tipo == "IN_ATTESA" || tipo == "SCADUTI" || tipo == "FIRMATI") && <Button variant="primary" className="btn-firma">
+                {(tipo == "IN_ATTESA" || tipo == "SCADUTI" || tipo == "FIRMATI" || tipo == "ANNULLATI") && <Button variant="primary" className="btn-firma">
                     Dettaglio documento <FaFileAlt className="ml-2" />
                 </Button>}
 
-                {(tipo != "IN_ATTESA" && tipo != "SCADUTI" && tipo != "FIRMATI") &&
+                {(tipo != "IN_ATTESA" && tipo != "SCADUTI" && tipo != "FIRMATI" && tipo != "ANNULLATI") &&
                     <div className="text-end mt-3">
                         <a href={"#"} target="_blank" rel="noopener noreferrer" className="mt-3 d-block text-primary">
                             Vedi dettaglio documento <FaChevronRight />

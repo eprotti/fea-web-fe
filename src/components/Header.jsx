@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React from 'react';
 import { Badge, Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap';
 import { FaHome, FaUser } from 'react-icons/fa'; // Importa l'icona del campanello
@@ -30,7 +29,7 @@ const Header = () => {
 
           <div id="top-nav-wrapper">
 
-            <a className="text-white" href="http://www.leo.gov.it">Ministero dell'Istruzione</a>
+            <a className="text-white" href="http://www.mim.gov.it">Ministero dell'Istruzione</a>
 
             <Button onClick={handleLogin} variant="primary" style={{ position: "fixed", bottom: "10px", left: "10px" }}>
               Login
