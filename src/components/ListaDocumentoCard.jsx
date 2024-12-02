@@ -4,6 +4,7 @@ import { FaEye, FaPen } from 'react-icons/fa'; // Icone per Dettaglio e Firma
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'; // Per il routing (opzionale)
 import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
+import { showNotification } from '../actions/notificationActions';
 
 const ListaDocumentoCard = ({ titolo, tipo }) => {
 
@@ -46,7 +47,7 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
 
     // Se c'è un errore, mostriamo un messaggio
     if (error) {
-        return <div className="alert alert-danger">{error}</div>;
+        dispatch(showNotification("Si è verificato un errore: " + error, "error"));
     }
 
     return (

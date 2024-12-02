@@ -12,6 +12,7 @@ export const simulateApiCall = () => {
   const today = getFormattedDate();
 
   return new Promise((resolve, reject) => {
+    
     setTimeout(() => {
       // Simuliamo una risposta fittizia dell'API
       const data = [
@@ -23,13 +24,14 @@ export const simulateApiCall = () => {
       ];
 
       // Simuliamo un'errore casuale del 10% di probabilità
-      //const isError = Math.random() < 0.1;
+      /* const isError = Math.random() < 0.1; */
+      const isError=false;
 
-      /* if (isError) {
+      if (isError) {
         reject('Errore nel recupero dei dati');
-      } else { */
-      resolve(data);
-      /* } */
-    }, 2000); // 2 secondi di ritardo per simulare una chiamata asincrona
+      } else {
+        resolve(data);
+      }
+    }, 0); // 2 secondi di ritardo per simulare una chiamata asincrona
   });
 };

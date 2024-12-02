@@ -1,10 +1,10 @@
-// src/components/PieChart.js
 import React, { useEffect } from 'react';
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 import { Card, ProgressBar } from 'react-bootstrap';
 import { Doughnut } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
+import { fetchDocuments } from '../actions/documentActions'; // Azione per caricare i documenti
+import { showNotification } from '../actions/notificationActions';
 
 // Registra i componenti necessari per il grafico
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -41,7 +41,7 @@ const PieChart = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    return <div className="alert alert-danger">{error}</div>;
+    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
   }
 
   // Inizializza un oggetto per contare i documenti per stato

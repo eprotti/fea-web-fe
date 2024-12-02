@@ -1,10 +1,10 @@
-// src/components/BarChart.js
 import React, { useEffect } from 'react';
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js';
 import { Card, ProgressBar } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
+import { fetchDocuments } from '../actions/documentActions'; // Azione per caricare i documenti
+import { showNotification } from '../actions/notificationActions';
 
 // Registra i componenti necessari per il grafico
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -43,10 +43,8 @@ const BarChart = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    return <div className="alert alert-danger">{error}</div>;
+    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
   }
-
-  
 
   // Inizializza un oggetto per contare i documenti per stato (solo per l'anno corrente)
   const counts = {
@@ -60,8 +58,8 @@ const BarChart = () => {
   // Conta i documenti per ciascun stato, ma solo per l'anno corrente
   documents.forEach((doc) => {
     const docYear = new Date(doc.createdAt).getFullYear();
-    if (docYear === currentYear && counts.hasOwnProperty(doc.status)) {
-      counts[doc.status]++;
+    if (docYear === currentYear && counts.hasOwnProperty(doc.tipo)) {
+      counts[doc.tipo]++;
     }
   });
 

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';  // Importa il contenitore per le notifiche
-import 'react-toastify/dist/ReactToastify.css';  // Importa il file CSS per le notifiche
 import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
+import { showNotification } from '../actions/notificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
 
@@ -34,7 +33,7 @@ const DocumentiDaFirmarePage = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    return <div className="alert alert-danger">{error}</div>;
+    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
   }
 
   return (
@@ -47,6 +46,7 @@ const DocumentiDaFirmarePage = () => {
           {documents?.map((document) => (
             <DocumentoCard
               key={document.id}
+              id={document.id}
               titolo={document.title}
               descrizione={document.title}
               dataInserimento={document.dataInserimento}
@@ -55,8 +55,6 @@ const DocumentiDaFirmarePage = () => {
             />
           ))}
 
-          {/* Aggiungi il container per le notifiche */}
-          <ToastContainer />
         </Col>
 
         {/* Colonna laterale (opzionale, visibile su schermi più grandi) */}

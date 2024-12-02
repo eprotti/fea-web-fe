@@ -1,4 +1,3 @@
-// src/actions/documentActions.js
 import { simulateApiCall } from '../services/simulateApiCall.js';
 
 export const fetchDocuments = () => async (dispatch) => {

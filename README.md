@@ -1,15 +1,8 @@
-# Fea Web FE
+# React + Vite
 
-Firma Elettronica Avanzata Web Frontend 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Applicazione di frontend del sistema FEA realizzata con ReactJS con il supporto delle seguenti librerie/framework: Node.js, Vite, Bootstrap, Redux, Axios.
+Currently, two official plugins are available:
 
-Per lanciare l'applicazione è necessario eseguire il seguente comando da un prompt dei comandi posizionandoti all'interno della directory /fea-web-fe.
-
-npm run dev
-
-per compilare invece quest'altro comando
-
-npm run build
-
-La compilazione produrrà una cartella /fea-web-fe/dist. Tale cartella conterrà l'applicazione che potrà essere deployata copiandola all'interno di un application server (es. Tomcat)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

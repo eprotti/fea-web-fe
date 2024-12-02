@@ -1,27 +1,20 @@
 import React from 'react';
-import { Badge, Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap';
-import { FaHome, FaUser } from 'react-icons/fa'; // Importa l'icona del campanello
-import { useSelector, useDispatch } from 'react-redux';
+import { Badge, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { FaHome } from 'react-icons/fa'; // Importa l'icona del campanello
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom'; // useLocation per determinare la pagina corrente
-import { loginUser } from '../actions/userActions';
+import Authentication from './Authentication'
 
 const Header = () => {
-
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);  // Cambia 'state' a 'state.user'
-
-  const handleLogin = () => {
-    // Simula un login con nome e cognome
-    dispatch(loginUser({ firstName: 'LEONARDO', lastName: 'TEST' }));
-  };
 
   const location = useLocation(); // Ottieni la posizione corrente della pagina
 
   // Funzione per determinare se un link è attivo
   const isActive = (path) => location.pathname === path;
 
-  const unreadCount = useSelector((state) => state.notifications.unreadCount);
-
+  const notifications = useSelector(state => state.notifications);
+  const unreadNotifications = notifications.filter(notification => !notification.isRead).length
+  
   return (
     <header className="text-white shadow-lg page-header">
       <div id="header-wrapper">
@@ -31,26 +24,20 @@ const Header = () => {
 
             <a className="text-white" href="http://www.mim.gov.it">Ministero dell'Istruzione</a>
 
-            <Button onClick={handleLogin} variant="primary" style={{ position: "fixed", bottom: "10px", left: "10px" }}>
-              Login
-            </Button>
-
-            {user.firstName!='' && (<div className="text-white" style={{ position: "fixed", top: "3px", right: "10px", width: "200px", float: "right", display: "flex" }}>
-              <span className='mr-2'>{user.firstName} {user.lastName}</span>
-              <FaUser className='user-icon' />
-            </div>)}
           </div>
+
+          <Authentication />
 
         </div>
         <div id="head-lead" className="container d-flex justify-content-between align-items-center">
           <div>
             <div className="logo">
-              <a href="#">
+              <a href="/">
                 <img src="/logo-sigillo.svg" alt="Logo MIM" height="80" />
               </a>
             </div>
             <h1>
-              <a href="#">SIGILLO</a>
+              <a href="/">SIGILLO</a>
               <div className="">Firma Elettronica Avanzata</div>
             </h1>
           </div>
@@ -86,9 +73,9 @@ const Header = () => {
               <Nav.Item className={"last"}>
                 <Nav.Link as={Link} to="/notifiche" className={isActive('/notifiche') ? "active" : ""}>
                   Notifiche
-                  {unreadCount > 0 && (
+                  {unreadNotifications > 0 && (
                     <Badge size={8} pill bg="danger" className="ml-2 pulse-notify-animation" style={{ fontSize: '12px', verticalAlign: 'baseline', marginLeft: "8px" }}>
-                      {unreadCount}
+                      {unreadNotifications}
                     </Badge>)}
                 </Nav.Link>
               </Nav.Item>

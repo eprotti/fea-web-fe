@@ -1,10 +1,16 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { FaPen, FaFileAlt, FaCalendar, FaChevronRight } from 'react-icons/fa';
+import { Button, Card } from 'react-bootstrap';
+import { FaCalendar, FaChevronRight, FaFileAlt, FaPen } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
+const DocumentoCard = ({ id, titolo, descrizione, dataInserimento, dataScadenza, tipo }) => {
 
+    const navigate = useNavigate();
 
-const DocumentoCard = ({ titolo, descrizione, dataInserimento, dataScadenza, tipo }) => {
+    const handleViewDocument = (id) => {
+        // Naviga verso la rotta del dettaglio documento
+        navigate(`dettaglio-documento/${id}`);
+    };
 
     // Funzione per determinare se il documento è in scadenza (ad esempio, entro 3 giorni dalla scadenza)
     const isExpiring = () => {
@@ -46,21 +52,24 @@ const DocumentoCard = ({ titolo, descrizione, dataInserimento, dataScadenza, tip
                 <Card.Title>{titolo}</Card.Title>
                 <Card.Text>{descrizione}</Card.Text>
 
-                {tipo == "DA_COMPILARE" && <Button variant="primary" className="btn-firma">
-                    Compila documento <FaPen className="ml-2" />
-                </Button>}
+                {tipo == "DA_COMPILARE" &&
+                    <Button variant="primary" className="btn-firma">
+                        Compila documento <FaPen className="ml-2" />
+                    </Button>}
 
-                {tipo == "DA_FIRMARE" && <Button variant="primary" className="btn-firma">
-                    Firma documento <FaPen className="ml-2" />
-                </Button>}
+                {tipo == "DA_FIRMARE" &&
+                    <Button variant="primary" className="btn-firma">
+                        Firma documento <FaPen className="ml-2" />
+                    </Button>}
 
-                {(tipo == "IN_ATTESA" || tipo == "SCADUTI" || tipo == "FIRMATI" || tipo == "ANNULLATI") && <Button variant="primary" className="btn-firma">
-                    Dettaglio documento <FaFileAlt className="ml-2" />
-                </Button>}
+                {(tipo == "IN_ATTESA" || tipo == "SCADUTI" || tipo == "FIRMATI" || tipo == "ANNULLATI") &&
+                    <Button onClick={() => handleViewDocument(id)} variant="primary" className="btn-firma">
+                        Dettaglio documento <FaFileAlt className="ml-2" />
+                    </Button>}
 
                 {(tipo != "IN_ATTESA" && tipo != "SCADUTI" && tipo != "FIRMATI" && tipo != "ANNULLATI") &&
                     <div className="text-end mt-3">
-                        <a href={"#"} target="_blank" rel="noopener noreferrer" className="mt-3 d-block text-primary">
+                        <a onClick={() => handleViewDocument(id)} rel="noopener noreferrer" className="mt-3 d-block text-primary">
                             Vedi dettaglio documento <FaChevronRight />
                         </a>
                     </div>}
