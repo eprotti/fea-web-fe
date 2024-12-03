@@ -3,19 +3,24 @@ import { Button, Card } from 'react-bootstrap';
 import { FaCalendar, FaChevronRight, FaFileAlt, FaPen } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-const DocumentoCard = ({ id, titolo, descrizione, dataInserimento, dataScadenza, tipo }) => {
+const DocumentoCard = ({ codiceDocumento, titolo, descrizione, dataInserimento, dataScadenza, tipo }) => {
 
     const navigate = useNavigate();
 
-    const handleViewDocument = (id) => {
+    const handleViewDocument = (codiceDocumento) => {
         // Naviga verso la rotta del dettaglio documento
-        navigate(`dettaglio-documento/${id}`);
+        navigate(`dettaglio-documento/${codiceDocumento}`);
+    };
+
+    const handleSignDocument = (codiceDocumento) => {
+        // Naviga verso la rotta del dettaglio documento
+        navigate(`firma-documento/${codiceDocumento}`);
     };
 
     // Funzione per determinare se il documento è in scadenza (ad esempio, entro 3 giorni dalla scadenza)
     const isExpiring = () => {
 
-        if ((tipo == "IN_ATTESA" || tipo == "SCADUTI" || tipo == "FIRMATI" || tipo == "ANNULLATI")) {
+        if ((tipo == "IN_ATTESA" || tipo == "SCADUTO" || tipo == "FIRMATO" || tipo == "ANNULLATO")) {
             return false;
         }
 
@@ -41,14 +46,14 @@ const DocumentoCard = ({ id, titolo, descrizione, dataInserimento, dataScadenza,
                 )}
 
                 <Card.Subtitle className="mb-2 text-muted p-y-1">
-                    <FaCalendar /> Inserito il: {new Date(dataInserimento).toLocaleDateString()} - <FaCalendar /> Scadenza: {new Date(dataScadenza).toLocaleDateString()}
+                    <span style={{whiteSpace: "nowrap", marginRight: '10px'}}><FaCalendar /> Inserito il: {new Date(dataInserimento).toLocaleDateString()}</span> <span style={{whiteSpace: "nowrap"}}><FaCalendar /> Scadenza: {new Date(dataScadenza).toLocaleDateString()}</span>
                 </Card.Subtitle>
                 {tipo == "DA_COMPILARE" && <hr className="thin-color-separator border-cc-06" />}
                 {tipo == "DA_FIRMARE" && <hr className="thin-color-separator border-cc-01" />}
                 {tipo == "IN_ATTESA" && <hr className="thin-color-separator border-cc-05" />}
-                {tipo == "SCADUTI" && <hr className="thin-color-separator border-cc-03" />}
-                {tipo == "FIRMATI" && <hr className="thin-color-separator border-cc-02" />}
-                {tipo == "ANNULLATI" && <hr className="thin-color-separator border-cc-45" />}
+                {tipo == "SCADUTO" && <hr className="thin-color-separator border-cc-03" />}
+                {tipo == "FIRMATO" && <hr className="thin-color-separator border-cc-02" />}
+                {tipo == "ANNULLATO" && <hr className="thin-color-separator border-cc-45" />}
                 <Card.Title>{titolo}</Card.Title>
                 <Card.Text>{descrizione}</Card.Text>
 
@@ -62,14 +67,14 @@ const DocumentoCard = ({ id, titolo, descrizione, dataInserimento, dataScadenza,
                         Firma documento <FaPen className="ml-2" />
                     </Button>}
 
-                {(tipo == "IN_ATTESA" || tipo == "SCADUTI" || tipo == "FIRMATI" || tipo == "ANNULLATI") &&
-                    <Button onClick={() => handleViewDocument(id)} variant="primary" className="btn-firma">
+                {(tipo == "IN_ATTESA" || tipo == "SCADUTO" || tipo == "FIRMATO" || tipo == "ANNULLATO") &&
+                    <Button onClick={() => handleViewDocument(codiceDocumento)} variant="primary" className="btn-firma">
                         Dettaglio documento <FaFileAlt className="ml-2" />
                     </Button>}
 
-                {(tipo != "IN_ATTESA" && tipo != "SCADUTI" && tipo != "FIRMATI" && tipo != "ANNULLATI") &&
+                {(tipo != "IN_ATTESA" && tipo != "SCADUTO" && tipo != "FIRMATO" && tipo != "ANNULLATO") &&
                     <div className="text-end mt-3">
-                        <a onClick={() => handleViewDocument(id)} rel="noopener noreferrer" className="mt-3 d-block text-primary">
+                        <a onClick={() => handleViewDocument(codiceDocumento)} rel="noopener noreferrer" style={{cursor: "pointer"}} className="mt-3 d-block text-primary">
                             Vedi dettaglio documento <FaChevronRight />
                         </a>
                     </div>}

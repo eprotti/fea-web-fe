@@ -4,7 +4,7 @@ import { Card, ProgressBar } from 'react-bootstrap';
 import { Doughnut } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDocuments } from '../actions/documentActions'; // Azione per caricare i documenti
-import { showNotification } from '../actions/notificationActions';
+import { addNotification } from '../actions/notificationActions';
 
 // Registra i componenti necessari per il grafico
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -41,22 +41,22 @@ const PieChart = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
+    dispatch(addNotification("Si è verificato un errore: " + error, "error"));
   }
 
   // Inizializza un oggetto per contare i documenti per stato
   const counts = {
     'DA_COMPILARE': 0,
     'DA_FIRMARE': 0,
-    'FIRMATI': 0,
-    'SCADUTI': 0,
+    'FIRMATO': 0,
+    'SCADUTO': 0,
     'IN_ATTESA': 0,
   };
 
   // Conta i documenti per ciascun stato
   documents.forEach((doc) => {
-    if (counts.hasOwnProperty(doc.status)) {
-      counts[doc.status]++;
+    if (counts.hasOwnProperty(doc.stato)) {
+      counts[doc.stato]++;
     }
   });
 
@@ -68,8 +68,8 @@ const PieChart = () => {
         data: [
           counts['DA_COMPILARE'],
           counts['DA_FIRMARE'],
-          counts['FIRMATI'],
-          counts['SCADUTI'],
+          counts['FIRMATO'],
+          counts['SCADUTO'],
           counts['IN_ATTESA'],
         ],
         backgroundColor: ['#b06cec', '#2fc3c8', '#75d495', '#f98586', '#f3d757'],

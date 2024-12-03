@@ -2,15 +2,18 @@ import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
-import { showNotification } from '../actions/notificationActions';
+import { addNotification } from '../actions/notificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
+import StatoDocumento from '../enum/statoDocumento.js';
 
 const DocumentiFirmatiPage = () => {
   const dispatch = useDispatch();
 
   // Otteniamo lo stato dal Redux store
   const { documents, loading, error } = useSelector((state) => state.documents);
+  const statusesToFilter = [StatoDocumento.FIRMATO];
+  const filteredDocuments = documents.filter(doc => statusesToFilter.includes(doc.stato));
 
   // Effettua la chiamata per recuperare i documenti quando il componente è montato
   useEffect(() => {
@@ -21,7 +24,7 @@ const DocumentiFirmatiPage = () => {
   if (loading) {
     return (
       <Container className="main-container pt-5 pb-5">
-        <h3>Documenti scaduti</h3>
+        <h3>Documenti firmati</h3>
         <div className="d-flex justify-content-center align-items-center" style={{ height: "200px" }} >
           <div style={{ width: '80%', padding: '20px' }}>
             <ProgressBar animated now={60} label="Caricamento..." />
@@ -33,27 +36,37 @@ const DocumentiFirmatiPage = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
+    dispatch(addNotification("Si è verificato un errore: " + error, "error"));
   }
 
   return (
     <Container className="main-container pt-5 pb-5">
-      <h3>Documenti scaduti</h3>
+      <h3>Documenti firmati</h3>
       <Row>
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>
 
-          {documents?.map((document) => (
-            <DocumentoCard
-              key={document.id}
-              id={document.id}
-              titolo={document.title}
-              descrizione={document.title}
-              dataInserimento={document.dataInserimento}
-              dataScadenza={document.dataScadenza}
-              tipo={"FIRMATI"}
-            />
-          ))}
+        {Array.isArray(filteredDocuments) && filteredDocuments.length > 0 ? (
+            <>
+              {filteredDocuments?.map((document) => (
+                <DocumentoCard
+                  key={document.codiceDocumento}
+                  codiceDocumento={document.codiceDocumento}
+                  titolo={document.titolo}
+                  descrizione={document.descrizione}
+                  dataInserimento={document.dataInserimento}
+                  dataScadenza={document.dataScadenza}
+                  tipo={StatoDocumento.FIRMATO}
+                />
+              ))}
+            </>
+          ) : (
+            <Card className="mb-4 custom-card py-4">
+              <Card.Body>
+                <h5 className='text-center'>Nessun documento trovato</h5>
+              </Card.Body>
+            </Card>
+          )}
 
         </Col>
 

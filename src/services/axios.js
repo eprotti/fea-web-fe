@@ -3,12 +3,25 @@ import { toast } from 'react-toastify';  // Importa la libreria per le notifiche
 
 // Crea un'istanza di Axios
 const instance = axios.create({
-  baseURL: 'https://api.example.com',  // Cambia con la tua URL base
+  baseURL: 'http://localhost:5000',  // Cambia con la tua URL base
   timeout: 10000,  // Timeout della richiesta
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+export const recuperaDocumenti = async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/documents', {
+      headers: {
+        Authorization: `Bearer asdasdsadasdasdasdasdasasasd`, // Aggiungi il token di autorizzazione
+      },
+    });
+    return response.data;
+  } catch (err) {
+    console.error('Errore nel recupero dei documenti', err);
+  }
+};
 
 // Aggiungi un interceptor per gestire gli errori globali
 instance.interceptors.response.use(
@@ -19,7 +32,7 @@ instance.interceptors.response.use(
     
     // Mostra la notifica di errore
     toast.error(`Errore: ${errorMessage}`, {
-      /* position: toast.POSITION.TOP_RIGHT, */
+      position: 'bottom-right',
       autoClose: 5000,  // La notifica rimarrà visibile per 5 secondi
     });
 

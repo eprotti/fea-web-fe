@@ -16,11 +16,12 @@ export const simulateApiCall = () => {
     setTimeout(() => {
       // Simuliamo una risposta fittizia dell'API
       const data = [
-        { id: 1, title: "Documento 1", status: "DA_FIRMARE", dataInserimento: today, dataScadenza: today },
-        { id: 2, title: "Documento 2", status: "DA_COMPILARE", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
-        { id: 3, title: "Documento 3", status: "FIRMATO", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
-        { id: 4, title: "Documento 4", status: "SCADUTO", dataInserimento: "2024-11-11", dataScadenza: "2024-10-11" },
-        { id: 5, title: "Documento 5", status: "IN_ATTESA", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
+        { codiceDocumento: 1, titolo: "Documento 1", stato: "DA_FIRMARE", dataInserimento: today, dataScadenza: today },
+        { codiceDocumento: 2, titolo: "Documento 2", stato: "DA_COMPILARE", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
+        { codiceDocumento: 3, titolo: "Documento 3", stato: "FIRMATO", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
+        { codiceDocumento: 4, titolo: "Documento 4", stato: "SCADUTO", dataInserimento: "2024-11-11", dataScadenza: "2024-10-11" },
+        { codiceDocumento: 5, titolo: "Documento 5", stato: "IN_ATTESA", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
+        { codiceDocumento: 6, titolo: "Documento 6", stato: "IN_ATTESA", dataInserimento: "2024-11-11", dataScadenza: "2024-12-11" },
       ];
 
       // Simuliamo un'errore casuale del 10% di probabilità
@@ -32,6 +33,8 @@ export const simulateApiCall = () => {
       } else {
         resolve(data);
       }
+
+      console.log("simulateApiCall")
     }, 0); // 2 secondi di ritardo per simulare una chiamata asincrona
   });
 };

@@ -22,14 +22,6 @@
   src: url("../fonts/titilliumweb-i.eot?#iefix&id=u2tj4h8") format("embedded-opentype"), url("../fonts/titilliumweb-i.woff2?id=u2tj4hb") format("woff2"), url("../fonts/titilliumweb-i.woff?id=u2tj4ib") format("woff"), url("../fonts/titilliumweb-i.ttf?id=u2tj4j7") format("truetype")
 }
 
-@font-face {
-  font-family: "leo-icons";
-  font-weight: 300;
-  font-style: normal;
-  src: url("../fonts/leo-icons.eot?id=u2tj4k1");
-  src: url("../fonts/leo-icons.eot?#iefix&id=u2tj4kv") format("embedded-opentype"), url("../fonts/leo-icons.woff2?id=u2tj4le") format("woff2"), url("../fonts/leo-icons.woff?id=u2tj4ls") format("woff"), url("../fonts/leo-icons.ttf?id=u2tj4ms") format("truetype")
-}
-
 .font-family-regular {
   font-family: "titilliumweb-r"
 }
@@ -166,7 +158,33 @@ h3.raw-style:after {
   color: #06C
 }
 
-.btn-alternative, .btn-alternative:focus, .btn-common, .btn-danger, .btn-danger:focus, .btn-default, .btn-default:focus, .btn-info, .btn-info:focus, .btn-minor, .btn-minor:focus, .button-style, .form-container #upload-list .ajax-file-upload-abort, .form-container #upload-list .ajax-file-upload-done, .form-container #upload-list .ajax-file-upload-green, .form-container #upload-list .ajax-file-upload-red, .form-container .ajax-file-upload, .form-container .upload-list .ajax-file-upload-abort, .form-container .upload-list .ajax-file-upload-done, .form-container .upload-list .ajax-file-upload-green, .form-container .upload-list .ajax-file-upload-red, .form-container .upload-list-2 .ajax-file-upload-abort, .form-container .upload-list-2 .ajax-file-upload-done, .form-container .upload-list-2 .ajax-file-upload-green, .form-container .upload-list-2 .ajax-file-upload-red, .submit-btn, .submit-btn:focus {
+.btn-alternative,
+.btn-alternative:focus,
+.btn-common,
+.btn-danger,
+.btn-danger:focus,
+.btn-default,
+.btn-default:focus,
+.btn-info,
+.btn-info:focus,
+.btn-minor,
+.btn-minor:focus,
+.button-style,
+.form-container #upload-list .ajax-file-upload-abort,
+.form-container #upload-list .ajax-file-upload-done,
+.form-container #upload-list .ajax-file-upload-green,
+.form-container #upload-list .ajax-file-upload-red,
+.form-container .ajax-file-upload,
+.form-container .upload-list .ajax-file-upload-abort,
+.form-container .upload-list .ajax-file-upload-done,
+.form-container .upload-list .ajax-file-upload-green,
+.form-container .upload-list .ajax-file-upload-red,
+.form-container .upload-list-2 .ajax-file-upload-abort,
+.form-container .upload-list-2 .ajax-file-upload-done,
+.form-container .upload-list-2 .ajax-file-upload-green,
+.form-container .upload-list-2 .ajax-file-upload-red,
+.submit-btn,
+.submit-btn:focus {
   font: normal 1.3rem titilliumweb-sb !important;
   background: #06C;
   color: #fff;

@@ -32,10 +32,10 @@ const Notifications = () => {
             </div>
             <small>{new Date(notification.timestamp).toLocaleString()}</small>
             <div>
-              <button onClick={() => handleMarkAsRead(notification.id)}>
+              <button style={{padding: "5px", paddingRight: "10px", paddingLeft: "10px", margin: "3px", backgroundColor: "#0d6efd", color: "white"}} onClick={() => handleMarkAsRead(notification.id)}>
                 Segna come letta
               </button>
-              <button onClick={() => handleRemove(notification.id)}>
+              <button style={{padding: "5px", paddingRight: "10px", paddingLeft: "10px", margin: "3px", backgroundColor: "#666666 ", color: "white"}} onClick={() => handleRemove(notification.id)}>
                 Rimuovi
               </button>
             </div>

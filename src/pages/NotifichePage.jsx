@@ -25,10 +25,10 @@ const App = () => {
           <Card>
             <Card.Title className='px-5 pt-1'>Aggiungi notifica</Card.Title>
             <Card.Body className='px-5 pt-1'>
-              <button className='pt-2 btn btn-primary' onClick={() => addNotificationHandler('Notifica di esempio (successo)', 'success')}>
+              <button className='pt-2 btn btn-primary my-2' onClick={() => addNotificationHandler('Notifica di esempio (successo)', 'success')}>
                 Aggiungi notifica success
               </button>
-              <button className='pt-2 btn btn-secondary error' onClick={() => addNotificationHandler('Notifica di esempio (errore)', 'error')}>
+              <button className='pt-2 btn btn-error my-2' onClick={() => addNotificationHandler('Notifica di esempio (errore)', 'error')}>
                 Aggiungi notifica errore
               </button>
             </Card.Body>

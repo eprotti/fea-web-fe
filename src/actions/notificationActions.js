@@ -1,20 +1,9 @@
-export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
 export const MARK_AS_READ = 'MARK_AS_READ';
 export const MARK_AS_DISPLAYED = 'MARK_AS_DISPLAYED';
-
-export const showNotification = (message, type) => ({
-  type: SHOW_NOTIFICATION,
-  payload: {
-    id: Date.now(),  // Usa il timestamp come ID unico
-    message,
-    type,  // Tipo di notifica (success, error, info, etc.)
-    timestamp: new Date().toUTCString(),
-  },
-});
 
 export const hideNotification = () => ({
   type: HIDE_NOTIFICATION,

@@ -24,10 +24,15 @@ a {
   font-weight: 500;
   color: #06c !important;
   text-decoration: inherit;
+  font-family: "titilliumweb-sb";
 }
 
 a:hover {
   color: #06c;
+}
+
+strong, b {
+  font-family: "titilliumweb-sb";
 }
 
 body {
@@ -40,6 +45,7 @@ body {
 #root {
   overflow: auto;
   width: 100%;
+  font-family: "titilliumweb-r", verdana;
 }
 
 .main-container {
@@ -87,6 +93,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  font-family: "titilliumweb-sb";
 }
 
 button:hover {
@@ -182,7 +189,7 @@ header {
   padding: 0.22rem 0 0.22rem 0.8rem;
   position: relative;
   max-width: 100%;
-  margin-left: 90px;
+  margin-left: 50px;
 }
 
 #top-nav #top-nav-title a {
@@ -378,12 +385,12 @@ footer a:hover {
 .nav-link {
   text-transform: uppercase !important;
   white-space: nowrap;
+  font-family: "titilliumweb-r";
 }
 
 .dropdown-item {
   height: 45px;
   padding-top: 10px;
-  text-decoration: underline;
   font-weight: normal !important;
   border-bottom: 1px solid #ccc !important;
 }
@@ -391,6 +398,7 @@ footer a:hover {
 .dropdown-item:hover {
   color: #00264D !important;
   font-weight: 500 !important;
+  text-decoration: underline;
 }
 
 .nav-item {
@@ -488,6 +496,48 @@ footer a:hover {
   margin-right: 0;
 }
 
+.App button{
+  margin-right: 5px!important;
+  text-transform: none!important;
+}
+
+.App {
+  padding-right: 20px;
+}
+
+.btn {
+  font-family: "titilliumweb-sb";
+}
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  text-transform: uppercase!important;
+  font-size: 18px!important;
+  border-color: #f9f9f9!important;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  text-transform: uppercase!important;
+  font-size: 18px!important;
+}
+
+.btn-error {
+  display: block;
+  width: 100%;
+  text-transform: uppercase!important;
+  font-size: 18px!important;
+  background-color: #dd3333!important;
+  border-color: #dd3333!important;
+  color: white;;
+}
+
+.btn-danger:hover {
+  background-color: #ac2929!important;
+}
+
 .border-cc-01 {
   border-color: #2fc3c8;
   opacity: 100;
@@ -528,13 +578,18 @@ footer a:hover {
   position: absolute;
   top: -10px;
   right: 0px;
-  background-color: #ee0000;
+  background-color: #dd3333;
   color: white;
-  padding: 3px;
-  font-size: 12px;
+  padding: 5px;
+  font-size: 14px;
   font-weight: bold;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.expiring-badge-list {
+  border-left: #f98586 4px solid;
+  padding-left: 5px;
 }
 
 @keyframes pulse-expire {
@@ -543,7 +598,7 @@ footer a:hover {
   }
 
   50% {
-    transform: scale(1.1);
+    transform: scale(1);
   }
 
   100% {
@@ -624,15 +679,21 @@ tbody tr:hover {
 }
 
 .user-icon {
-  width: 24px; /* Imposta la larghezza dell'icona */
-  height: 24px; /* Imposta l'altezza dell'icona */
-  border-radius: 50%; /* Crea il cerchio */
-  background-color: #ccc; /* Colore di sfondo per il cerchio */
+  width: 24px;
+  /* Imposta la larghezza dell'icona */
+  height: 24px;
+  /* Imposta l'altezza dell'icona */
+  border-radius: 50%;
+  /* Crea il cerchio */
+  background-color: #ccc;
+  /* Colore di sfondo per il cerchio */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px; /* Distanza tra l'icona e il nome */
-  color: white; /* Colore dell'icona */
+  margin-left: 10px;
+  /* Distanza tra l'icona e il nome */
+  color: white;
+  /* Colore dell'icona */
   font-size: 14px;
 }
 
@@ -663,4 +724,24 @@ tbody tr:hover {
 
 .dropdown-menu-user li:hover {
   background-color: #f1f1f1;
+}
+
+.card-body .data-show {
+  margin: 0.2rem 0 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: solid 1px #c4c4c4;
+}
+
+.card-body .data-show p.data-text {
+    font-weight: bold;
+    font-family: "titilliumweb-sb";
+}
+.card-body .data-show p {
+    margin: 0;
+    padding: 0;
+}
+
+.card-body .data-show p.data-value {
+  margin: 0;
+  word-wrap: break-word;
 }

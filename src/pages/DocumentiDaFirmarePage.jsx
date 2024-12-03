@@ -2,15 +2,18 @@ import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
-import { showNotification } from '../actions/notificationActions';
+import { addNotification } from '../actions/notificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
+import StatoDocumento from '../enum/statoDocumento.js';
 
 const DocumentiDaFirmarePage = () => {
   const dispatch = useDispatch();
 
   // Otteniamo lo stato dal Redux store
   const { documents, loading, error } = useSelector((state) => state.documents);
+  const statusesToFilter = [StatoDocumento.DA_FIRMARE];
+  const filteredDocuments = documents.filter(doc => statusesToFilter.includes(doc.stato));
 
   // Effettua la chiamata per recuperare i documenti quando il componente è montato
   useEffect(() => {
@@ -33,7 +36,7 @@ const DocumentiDaFirmarePage = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
+    dispatch(addNotification("Si è verificato un errore: " + error, "error"));
   }
 
   return (
@@ -43,17 +46,27 @@ const DocumentiDaFirmarePage = () => {
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>
 
-          {documents?.map((document) => (
-            <DocumentoCard
-              key={document.id}
-              id={document.id}
-              titolo={document.title}
-              descrizione={document.title}
-              dataInserimento={document.dataInserimento}
-              dataScadenza={document.dataScadenza}
-              tipo={"DA_FIRMARE"}
-            />
-          ))}
+        {Array.isArray(filteredDocuments) && filteredDocuments.length > 0 ? (
+            <>
+              {filteredDocuments?.map((document) => (
+                <DocumentoCard
+                  key={document.codiceDocumento}
+                  codiceDocumento={document.codiceDocumento}
+                  titolo={document.titolo}
+                  descrizione={document.descrizione}
+                  dataInserimento={document.dataInserimento}
+                  dataScadenza={document.dataScadenza}
+                  tipo={StatoDocumento.DA_FIRMARE}
+                />
+              ))}
+            </>
+          ) : (
+            <Card className="mb-4 custom-card py-4">
+              <Card.Body>
+                <h5 className='text-center'>Nessun documento trovato</h5>
+              </Card.Body>
+            </Card>
+          )}
 
         </Col>
 

@@ -4,7 +4,7 @@ import { Card, ProgressBar } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDocuments } from '../actions/documentActions'; // Azione per caricare i documenti
-import { showNotification } from '../actions/notificationActions';
+import { addNotification } from '../actions/notificationActions';
 
 // Registra i componenti necessari per il grafico
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -43,23 +43,23 @@ const BarChart = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
+    dispatch(addNotification("Si è verificato un errore: " + error, "error"));
   }
 
   // Inizializza un oggetto per contare i documenti per stato (solo per l'anno corrente)
   const counts = {
     'DA_COMPILARE': 0,
     'DA_FIRMARE': 0,
-    'FIRMATI': 0,
-    'SCADUTI': 0,
+    'FIRMATO': 0,
+    'SCADUTO': 0,
     'IN_ATTESA': 0,
   };
 
   // Conta i documenti per ciascun stato, ma solo per l'anno corrente
   documents.forEach((doc) => {
-    const docYear = new Date(doc.createdAt).getFullYear();
-    if (docYear === currentYear && counts.hasOwnProperty(doc.tipo)) {
-      counts[doc.tipo]++;
+    const docYear = new Date(doc.dataInserimento).getFullYear();
+    if (docYear === currentYear && counts.hasOwnProperty(doc.stato)) {
+      counts[doc.stato]++;
     }
   });
 
@@ -68,19 +68,16 @@ const BarChart = () => {
     labels: ['Da Compilare', 'Da Firmare', 'Firmati', 'Scaduti', 'In Attesa'],
     datasets: [
       {
-        label: `Conteggio Documenti per Stato (${currentYear})`,
         data: [
           counts['DA_COMPILARE'],
           counts['DA_FIRMARE'],
-          counts['FIRMATI'],
-          counts['SCADUTI'],
+          counts['FIRMATO'],
+          counts['SCADUTO'],
           counts['IN_ATTESA'],
         ],
-        backgroundColor: '#007bff',
-        borderColor: '#0056b3',
-        borderWidth: 1,
-        hoverBackgroundColor: '#0056b3',
-        hoverBorderColor: '#004085',
+        backgroundColor: ['#b06cec', '#2fc3c8', '#75d495', '#f98586', '#f3d757'],
+        borderColor: '#ffffff',
+        borderWidth: 2,
       },
     ],
   };
@@ -93,7 +90,7 @@ const BarChart = () => {
     },
     plugins: {
       title: {
-        display: true,
+        display: false,
         text: `Conteggio Documenti per Stato (${currentYear})`,
       },
       tooltip: {
@@ -103,6 +100,9 @@ const BarChart = () => {
           },
         },
       },
+      legend: {
+        display: false, // Mantieni abilitata la legenda (opzionale)
+      }
     },
     scales: {
       y: {

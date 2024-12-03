@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react';
-import { Card, Col, Container, ProgressBar, Row } from 'react-bootstrap';
-import { FaChevronLeft } from 'react-icons/fa';
+import { Button, Card, Col, Container, ProgressBar, Row } from 'react-bootstrap';
+import { FaChevronLeft, FaDownload } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
-import { showNotification } from '../actions/notificationActions.js';
+import { addNotification } from '../actions/notificationActions.js';
 
 import DettaglioDocumentoCard from '../components/DettaglioDocumentoCard.jsx';
+import StatoDocumento from '../enum/statoDocumento.js';
 
 const DettaglioDocumentoPage = () => {
   const dispatch = useDispatch();
 
-  // Recupera l'id dalla URL
-  const { id } = useParams();
+  // Recupera l'codiceDocumento dalla URL
+  const { codiceDocumento } = useParams();
 
   // Otteniamo lo stato dal Redux store
   const { documents, loading, error } = useSelector((state) => state.documents);
 
-  // Usa find per ottenere il documento con id uguale a documentIdToFind
-  const document = documents.find(doc => doc.id === parseInt(id));
+  // Usa find per ottenere il documento con codiceDocumento uguale a documentIdToFind
+  const documento = documents.find(doc => doc.codiceDocumento === parseInt(codiceDocumento));
 
   // Usa useNavigate per navigare
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const DettaglioDocumentoPage = () => {
 
   // Se c'è un errore, mostriamo un messaggio
   if (error) {
-    dispatch(showNotification("Si è verificato un errore: " + error, "error"));
+    dispatch(addNotification("Si è verificato un errore: " + error, "error"));
   }
 
   return (
@@ -53,10 +54,10 @@ const DettaglioDocumentoPage = () => {
       <Row>
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>
-          <DettaglioDocumentoCard documento={document} />
+          <DettaglioDocumentoCard documento={documento} />
 
           <div className="text-end mt-3">
-            <a onClick={() => navigate(-1)} rel="noopener noreferrer" className="mt-3 d-block text-primary">
+            <a onClick={() => navigate(-1)} rel="noopener noreferrer" style={{ cursor: "pointer" }} className="mt-3 d-block text-primary">
               <FaChevronLeft /> Torna alla lista
             </a>
           </div>
@@ -64,13 +65,26 @@ const DettaglioDocumentoPage = () => {
 
         {/* Colonna laterale (opzionale, visibile su schermi più grandi) */}
         <Col xs={12} md={4}>
-          <Card>
-            <Card.Body>
-              <Card.Title>Card</Card.Title>
-              <Card.Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat diam sed scelerisque tincidunt. Nunc cursus nisl a dui blandit sagittis sit amet in nisi. Etiam quis diam sit amet sapien fermentum euismod vitae ac dolor. Nunc eu eleifend mi. Sed auctor, felis sed rhoncus vulputate, risus leo fermentum mauris, vitae dignissim lectus magna ullamcorper nibh. Nunc quis lectus pulvinar, consequat ante a, convallis enim. Vestibulum blandit fermentum porttitor. Donec quis accumsan nibh, in tristique ante. Fusce auctor arcu in turpis pulvinar, non tempus justo malesuada. Pellentesque bibendum ante ac tempus eleifend. Proin vitae arcu id dui fringilla ornare. Donec non augue rhoncus, consectetur sapien nec, suscipit libero. Nullam ac enim quis ex elementum blandit. In a nunc convallis, auctor nunc et, volutpat diam. Pellentesque blandit pretium orci id dictum. Mauris placerat tempus placerat.
-              </Card.Text>
-            </Card.Body>
+
+          <Card className="mb-4 custom-card">
+
+            <div className="card-body px-4 py-4">
+
+              <Card.Subtitle className="mb-2 text-muted py-1">
+                <h5 className="m-a-0 text-uppercase light mt-0 mb-0">consulta il documento</h5>
+              </Card.Subtitle>
+
+
+              <a href="#" className="external" title="il documento verrà aperto in una nuova finestra">
+                <img src="/img/document-icon-11.svg" className="my-1 mb-4" alt="consulta il documento" />
+
+                <Button variant="primary" className="btn-secondary">
+                  Scarica <FaDownload className="ml-2" />
+                </Button>
+              </a>
+            </div>
+
+
           </Card>
         </Col>
       </Row>

@@ -14,6 +14,7 @@ import DocumentiScadutiPage from './pages/DocumentiScadutiPage';
 import DocumentiAnnullatiPage from './pages/DocumentiAnnullatiPage';
 import NotifichePage from './pages/NotifichePage';
 import DettaglioDocumentoPage from './pages/DettaglioDocumentoPage';
+import DocumentListener from './listener/DocumentListener';
 
 const App = () => {
 
@@ -32,12 +33,12 @@ const App = () => {
           <Route path="/archivio-documenti/firmati" element={<DocumentiFirmatiPage />} />
           <Route path="/archivio-documenti/scaduti" element={<DocumentiScadutiPage />} />
           <Route path="/archivio-documenti/annullati" element={<DocumentiAnnullatiPage />} />
-          <Route path="/documenti-da-compilare/dettaglio-documento/:id" element={<DettaglioDocumentoPage />} />
-          <Route path="/documenti-da-firmare/dettaglio-documento/:id" element={<DettaglioDocumentoPage />} />
-          <Route path="/documenti-in-attesa/dettaglio-documento/:id" element={<DettaglioDocumentoPage />} />
-          <Route path="/archivio-documenti/firmati/dettaglio-documento/:id" element={<DettaglioDocumentoPage />} />
-          <Route path="/archivio-documenti/scaduti/dettaglio-documento/:id" element={<DettaglioDocumentoPage />} />
-          <Route path="/archivio-documenti/annullati/dettaglio-documento/:id" element={<DettaglioDocumentoPage />} />
+          <Route path="/documenti-da-compilare/dettaglio-documento/:codiceDocumento" element={<DettaglioDocumentoPage />} />
+          <Route path="/documenti-da-firmare/dettaglio-documento/:codiceDocumento" element={<DettaglioDocumentoPage />} />
+          <Route path="/documenti-in-attesa/dettaglio-documento/:codiceDocumento" element={<DettaglioDocumentoPage />} />
+          <Route path="/archivio-documenti/firmati/dettaglio-documento/:codiceDocumento" element={<DettaglioDocumentoPage />} />
+          <Route path="/archivio-documenti/scaduti/dettaglio-documento/:codiceDocumento" element={<DettaglioDocumentoPage />} />
+          <Route path="/archivio-documenti/annullati/dettaglio-documento/:codiceDocumento" element={<DettaglioDocumentoPage />} />
 
           <Route path="/notifiche" element={<NotifichePage />} />
         </Routes>
@@ -49,6 +50,9 @@ const App = () => {
 
       {/* Aggiungi il componente NotificationListener per gestire la visualizzazione delle notifiche */}
       <NotificationListener />
+
+      {/* Aggiungi il componente DocumentListener per gestire le notifiche per l'aggiornamento dei documenti' */}
+      {/* <DocumentListener /> */}
 
       {/* Footer visibile su tutte le pagine */}
       < Footer />

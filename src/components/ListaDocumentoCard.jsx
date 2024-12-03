@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { Card, Table, ProgressBar } from 'react-bootstrap';
+import React from 'react';
+import { Card, ProgressBar, Table } from 'react-bootstrap';
 import { FaEye, FaPen } from 'react-icons/fa'; // Icone per Dettaglio e Firma
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'; // Per il routing (opzionale)
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
-import { showNotification } from '../actions/notificationActions';
+import { addNotification } from '../actions/notificationActions';
+import { useNavigate } from 'react-router-dom';
 
 const ListaDocumentoCard = ({ titolo, tipo }) => {
 
@@ -13,10 +12,45 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
     // Otteniamo lo stato dal Redux store
     const { documents, loading, error } = useSelector((state) => state.documents);
 
-    // Effettua la chiamata per recuperare i documenti quando il componente è montato
-    useEffect(() => {
-        dispatch(fetchDocuments()); // Dispatciamo l'azione per ottenere i documenti
-    }, [dispatch]);
+    const statusesToFilter = [tipo];
+    const filteredDocuments = documents.filter(doc => statusesToFilter.includes(doc.stato));
+
+    const navigate = useNavigate();
+
+    const handleViewDocument = (codiceDocumento) => {
+        // Naviga verso la rotta del dettaglio documento
+        { tipo == "DA_COMPILARE" && navigate(`documenti-da-compilare/dettaglio-documento/${codiceDocumento}`); }
+        { tipo == "DA_FIRMARE" && navigate(`documenti-da-firmare/dettaglio-documento/${codiceDocumento}`); }
+        { tipo == "IN_ATTESA" && navigate(`documenti-in-attesa/dettaglio-documento/${codiceDocumento}`); }
+        { tipo == "SCADUTO" && navigate(`documenti-scaduti/dettaglio-documento/${codiceDocumento}`); }
+        { tipo == "FIRMATO" && navigate(`documenti-annullati/dettaglio-documento/${codiceDocumento}`); }
+    };
+
+    const handleSignDocument = (codiceDocumento) => {
+        // Naviga verso la rotta del dettaglio documento
+        navigate(`firma-documento/${codiceDocumento}`);
+    };
+
+    // Funzione per determinare se il documento è in scadenza (ad esempio, entro 3 giorni dalla scadenza)
+    const isExpiring = (dataScadenza) => {
+
+        if ((tipo == "IN_ATTESA" || tipo == "SCADUTO" || tipo == "FIRMATO" || tipo == "ANNULLATO")) {
+            return false;
+        }
+
+        const currentDate = new Date(); // Data di oggi
+        const expirationDate = new Date(dataScadenza); // Data di scadenza
+
+        // Imposta entrambi i valori a mezzanotte per ignorare le ore
+        currentDate.setHours(0, 0, 0, 0);
+        expirationDate.setHours(0, 0, 0, 0);
+
+        // Calcola la differenza in giorni
+        const timeDifferenceInDays = (expirationDate - currentDate) / (1000 * 3600 * 24);
+
+        // Verifica se la scadenza è nei prossimi 3 giorni
+        return timeDifferenceInDays <= 3 && timeDifferenceInDays > 0;
+    };
 
     // Se i dati sono in caricamento, mostriamo lo spinner
     if (loading) {
@@ -29,8 +63,8 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
                         {tipo == "DA_COMPILARE" && <hr className="thin-color-separator border-cc-06" />}
                         {tipo == "DA_FIRMARE" && <hr className="thin-color-separator border-cc-01" />}
                         {tipo == "IN_ATTESA" && <hr className="thin-color-separator border-cc-05" />}
-                        {tipo == "SCADUTI" && <hr className="thin-color-separator border-cc-03" />}
-                        {tipo == "FIRMATI" && <hr className="thin-color-separator border-cc-02" />}
+                        {tipo == "SCADUTO" && <hr className="thin-color-separator border-cc-03" />}
+                        {tipo == "FIRMATO" && <hr className="thin-color-separator border-cc-02" />}
 
                     </Card.Title>
                     <Card.Body className='my-0 pt-0'>
@@ -47,8 +81,13 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
 
     // Se c'è un errore, mostriamo un messaggio
     if (error) {
-        dispatch(showNotification("Si è verificato un errore: " + error, "error"));
+        dispatch(addNotification("Si è verificato un errore: " + error, "error"));
     }
+
+    // Funzione per abbreviare il titolo se supera i 40 caratteri
+    const truncateTitle = (title, maxLength = 40) => {
+        return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
+    };
 
     return (
         <div className="document-list">
@@ -59,12 +98,12 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
                     {tipo == "DA_COMPILARE" && <hr className="thin-color-separator border-cc-06" />}
                     {tipo == "DA_FIRMARE" && <hr className="thin-color-separator border-cc-01" />}
                     {tipo == "IN_ATTESA" && <hr className="thin-color-separator border-cc-05" />}
-                    {tipo == "SCADUTI" && <hr className="thin-color-separator border-cc-03" />}
-                    {tipo == "FIRMATI" && <hr className="thin-color-separator border-cc-02" />}
+                    {tipo == "SCADUTO" && <hr className="thin-color-separator border-cc-03" />}
+                    {tipo == "FIRMATO" && <hr className="thin-color-separator border-cc-02" />}
 
                 </Card.Title>
                 <Card.Body className='my-0 pt-0'>
-                    {Array.isArray(documents) && documents.length > 0 ? (
+                    {Array.isArray(filteredDocuments) && filteredDocuments.length > 0 ? (
 
                         <Table borderless>
                             <thead >
@@ -72,22 +111,26 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
                                     <th>Titolo</th>
                                     <th className='col-2 text-center'>Data inserimento</th>
                                     <th className='d-none d-md-table-cell col-2 text-center'>Data scadenza</th>
-                                    <th className='col-2 text-center'>Azioni</th>
+                                    <th className='col-2 text-center' >Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {documents.map((document) => (
-                                    <tr key={document.id}>
-                                        <td>{document.title}</td>
+                                {filteredDocuments.map((document) => (
+                                    <tr key={document.codiceDocumento}>
+                                        <td style={{ whiteSpace: "nowrap" }}>
+                                            <span style={{ whiteSpace: "wrap" }} className={isExpiring(document.dataScadenza) && ("expiring-badge-list")}>
+                                                {truncateTitle(document.titolo)}
+                                            </span>
+                                        </td>
                                         <td className='text-center'>{document.dataInserimento}</td>
                                         <td className='d-none d-md-table-cell text-center'>{document.dataScadenza}</td>
-                                        <td className='text-center'>
-                                            <Link to={`/dettaglio/${document.id}`} style={{ margin: "5px" }} >
+                                        <td className='text-center' style={{ whiteSpace: "nowrap" }}>
+                                            <a onClick={() => handleViewDocument(document.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
                                                 <FaEye size={20} ></FaEye>
-                                            </Link>
-                                            <Link to={`/firma/${document.id}`} style={{ margin: "5px" }} >
+                                            </a>
+                                            <a onClick={() => handleSignDocument(document.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
                                                 <FaPen size={20}></FaPen>
-                                            </Link>
+                                            </a>
                                         </td>
                                     </tr>
                                 ))}
@@ -98,7 +141,7 @@ const ListaDocumentoCard = ({ titolo, tipo }) => {
                     )}
                 </Card.Body>
             </Card>
-        </div>
+        </div >
     );
 };
 

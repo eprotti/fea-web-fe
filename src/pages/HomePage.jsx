@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ListaDocumentoCard from '../components/ListaDocumentoCard';
 import PieChart from '../components/PieChart';
-import BarChart from '../components/BarChart';
+import BarChart from '../components/BarChart.jsX';
 
 const HomePage = () => {
 
@@ -16,8 +16,8 @@ const HomePage = () => {
           <ListaDocumentoCard titolo={"Documenti da compilare"} tipo={"DA_COMPILARE"} />
           <ListaDocumentoCard titolo={"Documenti da firmare"} tipo={"DA_FIRMARE"} />
           <ListaDocumentoCard titolo={"Documenti in attesa"} tipo={"IN_ATTESA"} />
-          <ListaDocumentoCard titolo={"Documenti firmati"} tipo={"FIRMATI"} />
-          <ListaDocumentoCard titolo={"Documenti scaduti"} tipo={"SCADUTI"} />
+          <ListaDocumentoCard titolo={"Documenti firmati"} tipo={"FIRMATO"} />
+          <ListaDocumentoCard titolo={"Documenti scaduti"} tipo={"SCADUTO"} />
         </Col>
 
         {/* Colonna laterale (opzionale, visibile su schermi più grandi) */}
