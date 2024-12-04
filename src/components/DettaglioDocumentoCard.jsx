@@ -1,34 +1,16 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaPen } from 'react-icons/fa';
+import { isExpiring, separatorDocumento } from '../utils/documentoUtil';
+import StatoDocumento from '../enum/statoDocumento';
 
 const DettaglioDocumentoCard = ({ documento }) => {
 
-    // Funzione per determinare se il documento è in scadenza (ad esempio, entro 3 giorni dalla scadenza)
-    const isExpiring = () => {
-
-        if ((documento.stato == "IN_ATTESA" || documento.stato == "SCADUTO" || documento.stato == "FIRMATO" || documento.stato == "ANNULLATO")) {
-            return false;
-        }
-
-        const currentDate = new Date(); // Data di oggi
-        const expirationDate = new Date(documento.dataScadenza); // Data di scadenza
-
-        // Imposta entrambi i valori a mezzanotte per ignorare le ore
-        currentDate.setHours(0, 0, 0, 0);
-        expirationDate.setHours(0, 0, 0, 0);
-
-        // Calcola la differenza in giorni
-        const timeDifferenceInDays = (expirationDate - currentDate) / (1000 * 3600 * 24);
-
-        // Verifica se la scadenza è nei prossimi 3 giorni
-        return timeDifferenceInDays <= 3 && timeDifferenceInDays > 0;
-    };
     return (
         <>
             <Card className="mb-4 custom-card">
                 {/* Aggiungi il badge in alto a destra se il documento è in scadenza */}
-                {isExpiring() && (
+                {isExpiring(documento.dataScadenza, documento.stato) && (
                     <div className="expiring-badge pulse-expire-animation">In scadenza</div>
                 )}
 
@@ -38,12 +20,7 @@ const DettaglioDocumentoCard = ({ documento }) => {
                         <h5 className="m-a-0 text-uppercase light mt-0 mb-0">Scheda documento</h5>
                     </Card.Subtitle>
 
-                    {documento.stato == "DA_COMPILARE" && <hr className="thin-color-separator border-cc-06" />}
-                    {documento.stato == "DA_FIRMARE" && <hr className="thin-color-separator border-cc-01" />}
-                    {documento.stato == "IN_ATTESA" && <hr className="thin-color-separator border-cc-05" />}
-                    {documento.stato == "SCADUTO" && <hr className="thin-color-separator border-cc-03" />}
-                    {documento.stato == "FIRMATO" && <hr className="thin-color-separator border-cc-02" />}
-                    {documento.stato == "ANNULLATO" && <hr className="thin-color-separator border-cc-45" />}
+                    <hr className={`thin-color-separator pb-2 mt-3 ${separatorDocumento(documento.stato)}`} />
 
                     <div className="row">
                         <div className="col-xs-12 col-md-4">
@@ -116,7 +93,7 @@ const DettaglioDocumentoCard = ({ documento }) => {
 
                 <div className="card-body">
 
-                    {documento.stato == "DA_COMPILARE" && <Button variant="primary" className="btn-firma">
+                    {documento.stato == StatoDocumento.DA_COMPILARE && <Button variant="primary" className="btn-firma">
                         Compila documento <FaPen className="ml-2" />
                     </Button>}
 

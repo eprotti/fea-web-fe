@@ -85,7 +85,7 @@ export const simulateApiCall = () => {
         {
           codiceDocumento: 7,
           titolo: "Documento 7",
-          stato: "ANNULLATO",
+          stato: "SCADUTO",
           dataInserimento: "2024-11-11",
           dataScadenza: "2024-12-11",
           predispostoDa: "RMIC83100G - IC VIA DELLE ALZAVOLE",
@@ -97,13 +97,13 @@ export const simulateApiCall = () => {
 
       // Simuliamo un'errore casuale del 10% di probabilità
       /* const isError = Math.random() < 0.1; */
-      const isError = false;
+      /* const isError = false;
 
       if (isError) {
         reject('Errore nel recupero dei dati');
-      } else {
+      } else { */
         resolve(data);
-      }
+      /* } */
 
       console.log("simulateApiCall")
     }, 0); // 2 secondi di ritardo per simulare una chiamata asincrona

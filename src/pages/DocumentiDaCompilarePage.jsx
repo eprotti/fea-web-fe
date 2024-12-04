@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
+import { fetchDocuments } from '../actions/documentActions.js'; 
 import { addNotification } from '../actions/notificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
@@ -10,7 +10,6 @@ import StatoDocumento from '../enum/statoDocumento.js';
 const DocumentiDaCompilarePage = () => {
   const dispatch = useDispatch();
 
-  // Otteniamo lo stato dal Redux store
   const { documents, loading, error } = useSelector((state) => state.documents);
   const statusesToFilter = [StatoDocumento.DA_COMPILARE];
   const filteredDocuments = documents.filter(doc => statusesToFilter.includes(doc.stato));
@@ -56,7 +55,7 @@ const DocumentiDaCompilarePage = () => {
                   descrizione={document.descrizione}
                   dataInserimento={document.dataInserimento}
                   dataScadenza={document.dataScadenza}
-                  tipo={StatoDocumento.DA_COMPILARE}
+                  stato={StatoDocumento.DA_COMPILARE}
                 />
               ))}
             </>

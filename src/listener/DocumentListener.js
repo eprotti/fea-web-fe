@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify'; // Importa React-Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Importa i CSS di React-Toastify
 import { fetchDocuments } from '../actions/documentActions.js';
-import { debounce } from 'lodash';
 
 const DocumentListener = () => {
-    /* const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     // Otteniamo lo stato dal Redux store
     const { hasChanges } = useSelector((state) => state.documents);
@@ -26,21 +25,19 @@ const DocumentListener = () => {
     }, [hasChanges]);  // Esegui l'effetto ogni volta che `hasChanges` cambia
 
     useEffect(() => {
-        // Creiamo una funzione debounced che esegue il polling
-        const debouncedFetchDocuments = debounce(() => {
+        // Funzione di polling che recupera i documenti ogni 10 secondi
+        const intervalId = setInterval(() => {
             dispatch(fetchDocuments());
-        }, 3000);  // Imposta il debouncing per 3 secondi (3000 millisecondi)
+        }, 60000);
 
-        // Avvia la funzione debounced
-        debouncedFetchDocuments();
+        // Primo caricamento dei documenti
+        dispatch(fetchDocuments());
 
-        // Pulizia del debounced function al termine del ciclo di vita del componente
-        return () => {
-            debouncedFetchDocuments.cancel();  // Cancella il debounced quando il componente viene smontato
-        };
+        // Pulizia al momento dello smontaggio del componente
+        return () => clearInterval(intervalId);
     }, [dispatch]); // L'array delle dipendenze include solo dispatch, per eseguire il debounced solo una volta
 
-    return null;  // Non renderizzare nulla */
+    return null;  // Non renderizzare nulla
 };
 
 export default DocumentListener;

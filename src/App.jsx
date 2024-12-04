@@ -52,7 +52,7 @@ const App = () => {
       <NotificationListener />
 
       {/* Aggiungi il componente DocumentListener per gestire le notifiche per l'aggiornamento dei documenti' */}
-      {/* <DocumentListener /> */}
+      <DocumentListener />
 
       {/* Footer visibile su tutte le pagine */}
       < Footer />

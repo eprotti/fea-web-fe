@@ -7,22 +7,18 @@ import { fetchDocuments } from '../actions/documentActions.js'; // Azione per ca
 import { addNotification } from '../actions/notificationActions.js';
 
 import DettaglioDocumentoCard from '../components/DettaglioDocumentoCard.jsx';
-import StatoDocumento from '../enum/statoDocumento.js';
 
 const DettaglioDocumentoPage = () => {
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Recupera l'codiceDocumento dalla URL
   const { codiceDocumento } = useParams();
 
   // Otteniamo lo stato dal Redux store
   const { documents, loading, error } = useSelector((state) => state.documents);
-
-  // Usa find per ottenere il documento con codiceDocumento uguale a documentIdToFind
   const documento = documents.find(doc => doc.codiceDocumento === parseInt(codiceDocumento));
-
-  // Usa useNavigate per navigare
-  const navigate = useNavigate();
 
   // Effettua la chiamata per recuperare i documenti quando il componente è montato
   useEffect(() => {
@@ -74,7 +70,6 @@ const DettaglioDocumentoPage = () => {
                 <h5 className="m-a-0 text-uppercase light mt-0 mb-0">consulta il documento</h5>
               </Card.Subtitle>
 
-
               <a href="#" className="external" title="il documento verrà aperto in una nuova finestra">
                 <img src="/img/document-icon-11.svg" className="my-1 mb-4" alt="consulta il documento" />
 
@@ -82,8 +77,8 @@ const DettaglioDocumentoPage = () => {
                   Scarica <FaDownload className="ml-2" />
                 </Button>
               </a>
-            </div>
 
+            </div>
 
           </Card>
         </Col>

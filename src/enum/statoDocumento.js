@@ -1,4 +1,4 @@
-const StatoDocumento = Object.freeze({
+export const StatoDocumento = Object.freeze({
     DA_COMPILARE: "DA_COMPILARE",
     DA_FIRMARE: "DA_FIRMARE",
     IN_ATTESA: "IN_ATTESA",

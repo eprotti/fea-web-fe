@@ -1,8 +1,8 @@
 // src/reducers/documentReducer.js
 const initialState = {
     documents: [], // I documenti recuperati
-   /*  previousDocuments: [],
-    hasChanges: false, */
+    previousDocuments: [],
+    hasChanges: false,
     loading: false, // Stato di caricamento
     error: null, // Messaggio di errore
 };
@@ -16,8 +16,8 @@ const documentReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 documents: action.payload,
-                /* previousDocuments: state.documents,  // Salva lo stato precedente
-                hasChanges: checkForChanges(state.documents, action.payload), */
+                previousDocuments: state.documents,  // Salva lo stato precedente
+                hasChanges: checkForChanges(state.documents, action.payload),
             };
         case 'DOCUMENTS_FETCH_ERROR':
             return { ...state, loading: false, error: action.payload };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
+import { fetchDocuments } from '../actions/documentActions.js'; 
 import { addNotification } from '../actions/notificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
@@ -56,7 +56,7 @@ const DocumentiInAttesaPage = () => {
                   descrizione={document.descrizione}
                   dataInserimento={document.dataInserimento}
                   dataScadenza={document.dataScadenza}
-                  tipo={StatoDocumento.IN_ATTESA}
+                  stato={StatoDocumento.IN_ATTESA}
                 />
               ))}
             </>
@@ -70,7 +70,6 @@ const DocumentiInAttesaPage = () => {
 
         </Col>
 
-        {/* Colonna laterale (opzionale, visibile su schermi più grandi) */}
         <Col xs={12} md={4}>
           <Card>
             <Card.Body>
