@@ -45,3 +45,22 @@ export const separatorDocumento = (stato) => {
     }
 }
 
+export const scaricaDocumento = (stato) => {
+    switch (stato) {
+        case StatoDocumento.DA_COMPILARE:
+            return 'document-icon-11';
+        case StatoDocumento.DA_FIRMARE:
+            return 'document-icon-1';
+        case StatoDocumento.IN_ATTESA:
+            return 'document-icon-7';
+        case StatoDocumento.SCADUTO:
+            return 'document-icon-3';
+        case StatoDocumento.FIRMATO:
+            return 'document-icon-2';
+        case StatoDocumento.ANNULLATO:
+            return 'document-icon-4';
+        default:
+            return '';
+    }
+}
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { FaCalendar, FaChevronRight, FaFileAlt, FaPen } from 'react-icons/fa';
+import { FaCalendar, FaChevronRight, FaEye, FaFileAlt, FaFileSignature, FaPen } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import StatoDocumento from '../enum/statoDocumento';
 import { isExpiring, separatorDocumento } from '../utils/documentoUtil';
@@ -29,17 +29,17 @@ const DocumentoCard = ({ codiceDocumento, titolo, descrizione, dataInserimento, 
 
                 {stato == StatoDocumento.DA_COMPILARE &&
                     <Button onClick={() => handleCompileDocument(navigate, codiceDocumento)} variant="primary" className="btn-firma">
-                        Compila documento <FaPen className="ml-2" />
+                        Compila documento <FaFileAlt className="ml-2" />
                     </Button>}
 
                 {stato == StatoDocumento.DA_FIRMARE &&
                     <Button onClick={() => handleSignDocument(navigate, codiceDocumento)} variant="primary" className="btn-firma">
-                        Firma documento <FaPen className="ml-2" />
+                        Firma documento <FaFileSignature className="ml-2" />
                     </Button>}
 
                 {(stato == StatoDocumento.IN_ATTESA || stato == StatoDocumento.SCADUTO || stato == StatoDocumento.FIRMATO || stato == StatoDocumento.ANNULLATO) &&
                     <Button onClick={() => handleViewDocument(navigate, codiceDocumento)} variant="primary" className="btn-firma">
-                        Dettaglio documento <FaFileAlt className="ml-2" />
+                        Dettaglio documento <FaEye className="ml-2" />
                     </Button>}
 
                 {(stato != StatoDocumento.IN_ATTESA && stato != StatoDocumento.SCADUTO && stato != StatoDocumento.FIRMATO && stato != StatoDocumento.ANNULLATO) &&

@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Col, Container, ProgressBar, Row } from 'react-bootstrap';
-import { FaChevronLeft, FaFileAlt, FaFileSignature } from 'react-icons/fa';
+import { Col, Container, ProgressBar, Row } from 'react-bootstrap';
+import { FaChevronLeft } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
 import { addNotification } from '../actions/notificationActions.js';
-import { StatoDocumento } from '../enum/statoDocumento';
 
-import DatiTecniciDocumentoCard from '../components/DatiTecniciDocumentoCard.jsx';
 import DettaglioDocumentoCard from '../components/DettaglioDocumentoCard.jsx';
 import FirmaDocumentoCard from '../components/FirmaDocumentoCard.jsx';
+import PresaVisioneFirmaDocumentoCard from '../components/PresaVisioneFirmaDocumentoCard.jsx';
 import ScaricaDocumentoCard from '../components/ScaricaDocumentoCard.jsx';
-import { handleCompileDocument, handleSignDocument } from '../utils/navigationUtil.js';
+import DatiTecniciDocumentoCard from '../components/DatiTecniciDocumentoCard.jsx';
+import SpidButtonCard from '../components/SpidButtonCard.jsx';
 
-const DettaglioDocumentoPage = () => {
+const FirmaDocumentoPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const DettaglioDocumentoPage = () => {
   if (loading) {
     return (
       <Container className="main-container pt-5 pb-5">
-        <h3>Dettaglio documento</h3>
+        <h3>Firma documento</h3>
         <div className="d-flex justify-content-center align-items-center" style={{ height: "200px" }} >
           <div style={{ width: '80%', padding: '20px' }}>
             <ProgressBar animated now={60} label="Caricamento..." />
@@ -51,36 +51,19 @@ const DettaglioDocumentoPage = () => {
 
   return (
     <Container className="main-container pt-5 pb-5">
-      <h3>Dettaglio documento</h3>
+      <h3>Firma documento</h3>
       <Row>
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>
           <DettaglioDocumentoCard documento={documento} />
 
-          {documento.stato == StatoDocumento.DA_FIRMARE && <FirmaDocumentoCard documento={documento} />}
+          <FirmaDocumentoCard documento={documento} readonly={"false"} />
+
+          <PresaVisioneFirmaDocumentoCard documento={documento} />
 
           <DatiTecniciDocumentoCard documento={documento} />
 
-          {(documento.stato == StatoDocumento.DA_COMPILARE || documento.stato == StatoDocumento.DA_FIRMARE) && (
-            <Card className="mb-4 custom-card">
-
-              <div className="card-body">
-
-                {documento.stato == StatoDocumento.DA_COMPILARE &&
-                  <Button onClick={() => handleCompileDocument(navigate, documento.codiceDocumento)} variant="primary" className="btn-firma">
-                    Compila documento <FaFileAlt className="ml-2" />
-                  </Button>}
-
-                {documento.stato == StatoDocumento.DA_FIRMARE &&
-                  <Button onClick={() => handleSignDocument(navigate, documento.codiceDocumento)} variant="primary" className="btn-firma">
-                    Firma documento <FaFileSignature className="ml-2" />
-                  </Button>}
-
-              </div>
-
-            </Card >)}
-
-
+          <SpidButtonCard documento={documento} />
 
           <div className="text-end mt-3">
             <a onClick={() => navigate(-1)} rel="noopener noreferrer" style={{ cursor: "pointer", fontSize: "large" }} className="mt-3 text-primary">
@@ -91,11 +74,13 @@ const DettaglioDocumentoPage = () => {
 
         {/* Colonna laterale (opzionale, visibile su schermi più grandi) */}
         <Col xs={12} md={4}>
+
           <ScaricaDocumentoCard documento={documento} />
+
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default DettaglioDocumentoPage;
+export default FirmaDocumentoPage;

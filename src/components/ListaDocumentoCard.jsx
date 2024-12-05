@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card, ProgressBar, Table } from 'react-bootstrap';
-import { FaEye, FaPen } from 'react-icons/fa'; // Icone per Dettaglio e Firma
+import { FaEye, FaFileAlt, FaFileSignature, FaPen, FaPencilAlt, FaSignature } from 'react-icons/fa'; // Icone per Dettaglio e Firma
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addNotification } from '../actions/notificationActions';
 import StatoDocumento from '../enum/statoDocumento';
 import { isExpiring, separatorDocumento, truncateTitle } from '../utils/documentoUtil';
-import { handleViewListDocument } from '../utils/navigationUtil';
+import { handleCompileDocument, handleSignDocument, handleViewListDocument } from '../utils/navigationUtil';
 
 const ListaDocumentoCard = ({ titolo, stato }) => {
 
@@ -67,22 +67,29 @@ const ListaDocumentoCard = ({ titolo, stato }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredDocuments.map((document) => (
-                                    <tr key={document.codiceDocumento}>
+                                {filteredDocuments.map((documento) => (
+                                    <tr key={documento.codiceDocumento}>
                                         <td style={{ whiteSpace: "nowrap" }}>
-                                            <span style={{ whiteSpace: "wrap" }} className={isExpiring(document.dataScadenza, document.stato) && ("expiring-badge-list")}>
-                                                {truncateTitle(document.titolo)}
+                                            <span style={{ whiteSpace: "wrap" }} className={isExpiring(documento.dataScadenza, documento.stato) && ("expiring-badge-list")}>
+                                                {truncateTitle(documento.titolo)}
                                             </span>
                                         </td>
-                                        <td className='text-center'>{document.dataInserimento}</td>
-                                        <td className='d-none d-md-table-cell text-center'>{document.dataScadenza}</td>
+                                        <td className='text-center'>{documento.dataInserimento}</td>
+                                        <td className='d-none d-md-table-cell text-center'>{documento.dataScadenza}</td>
                                         <td className='text-center' style={{ whiteSpace: "nowrap" }}>
-                                            <a onClick={() => handleViewListDocument(navigate, document.stato, document.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
+                                            <a onClick={() => handleViewListDocument(navigate, documento.stato, documento.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
                                                 <FaEye size={20} ></FaEye>
                                             </a>
-                                            <a onClick={() => handleViewListDocument(navigate, document.stato, document.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
-                                                <FaPen size={20}></FaPen>
-                                            </a>
+
+                                            {documento.stato == StatoDocumento.DA_FIRMARE &&
+                                                <a onClick={() => handleSignDocument(navigate, documento.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
+                                                    <FaFileSignature size={20}></FaFileSignature>
+                                                </a>}
+
+                                            {documento.stato == StatoDocumento.DA_COMPILARE &&
+                                                <a onClick={() => handleCompileDocument(navigate, documento.codiceDocumento)} rel="noopener noreferrer" style={{ marginRight: "10px", cursor: "pointer" }}>
+                                                    <FaFileAlt size={20}></FaFileAlt>
+                                                </a>}
                                         </td>
                                     </tr>
                                 ))}

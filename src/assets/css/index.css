@@ -31,7 +31,12 @@ a:hover {
   color: #06c;
 }
 
-strong, b {
+strong,
+b {
+  font-family: "titilliumweb-sb";
+}
+
+.h5 {
   font-family: "titilliumweb-sb";
 }
 
@@ -496,9 +501,9 @@ footer a:hover {
   margin-right: 0;
 }
 
-.App button{
-  margin-right: 5px!important;
-  text-transform: none!important;
+.App button {
+  margin-right: 5px !important;
+  text-transform: none !important;
 }
 
 .App {
@@ -512,30 +517,31 @@ footer a:hover {
 .btn-secondary {
   display: block;
   width: 100%;
-  text-transform: uppercase!important;
-  font-size: 18px!important;
-  border-color: #f9f9f9!important;
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  border-color: #f9f9f9 !important;
 }
 
 .btn-primary {
   display: block;
   width: 100%;
-  text-transform: uppercase!important;
-  font-size: 18px!important;
+  text-transform: uppercase !important;
+  font-size: 18px !important;
 }
 
 .btn-error {
   display: block;
   width: 100%;
-  text-transform: uppercase!important;
-  font-size: 18px!important;
-  background-color: #dd3333!important;
-  border-color: #dd3333!important;
-  color: white;;
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  background-color: #dd3333 !important;
+  border-color: #dd3333 !important;
+  color: white;
+  ;
 }
 
 .btn-danger:hover {
-  background-color: #ac2929!important;
+  background-color: #ac2929 !important;
 }
 
 .border-cc-01 {
@@ -733,15 +739,152 @@ tbody tr:hover {
 }
 
 .card-body .data-show p.data-text {
-    font-weight: bold;
-    font-family: "titilliumweb-sb";
+  font-weight: bold;
+  font-family: "titilliumweb-sb";
 }
+
 .card-body .data-show p {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .card-body .data-show p.data-value {
   margin: 0;
   word-wrap: break-word;
+}
+
+.card-dati-tecnici-header {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  /* Usa Flexbox */
+  justify-content: space-between;
+  /* Posiziona il testo a sinistra e l'icona a destra */
+  align-items: center;
+  color: #06c;
+}
+
+.opened {
+  padding-bottom: 0px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Contenitore dei bottoni */
+.spid-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  position: relative;
+  /* Per posizionare correttamente il dropdown */
+}
+
+/* Stile del bottone SPID */
+.spid-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #005db1;
+  /* Colore ufficiale SPID */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 200px;
+}
+
+.spid-button:hover {
+  background-color: #003a8c;
+}
+
+.spid-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/* Stile del bottone CIE */
+.cie-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #005db1;
+  /* Colore ufficiale SPID */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 200px;
+
+}
+
+.cie-button:hover {
+  background-color: #004d73;
+}
+
+.cie-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/* Stile del dropdown */
+.spid-dropdown-menu {
+  position: absolute;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  /* Aggiungi la possibilità di scrollare se ci sono troppi provider */
+}
+
+/* Stile delle voci del dropdown */
+.spid-dropdown-item {
+  display: block;
+  width: 100%;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  line-height: 18px;
+  padding-top: 5px;
+  white-space: nowrap;
+  margin: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  border-bottom: 1px solid #888;
+  border-radius: 0;
+}
+
+.spid-dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Chiusura automatica del dropdown quando si seleziona un elemento */
+.spid-dropdown-item:active {
+  background-color: #e0e0e0;
+}
+
+.header-notify {
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  /* Usa Flexbox */
+  justify-content: space-between;
+  /* Posiziona il testo a sinistra e l'icona a destra */
+  align-items: center;
+  color: #06c;
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify'; // Importa React-Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Importa i CSS di React-Toastify
 import { markAsDisplayed } from '../actions/notificationActions';
+import { truncateMessage } from '../utils/notificationUtils';
 
 const NotificationListener = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const NotificationListener = () => {
         // Mostra il toast usando React-Toastify
 
         if (notification.type === 'success') {
-          toast.success(notification.message, {
+          toast.success(truncateMessage(notification.message), {
             position: 'bottom-right',
             autoClose: 5000,
             hideProgressBar: false,
@@ -28,7 +29,7 @@ const NotificationListener = () => {
             draggable: false,
           });
         } else if (notification.type === 'error') {
-          toast.error(notification.message, {
+          toast.error(truncateMessage(notification.message), {
             position: 'bottom-right',
             autoClose: 5000,
             hideProgressBar: false,

@@ -1,5 +1,5 @@
 export const handleSignDocument = (navigate, codiceDocumento) => {
-    navigate(`firma-documento/${codiceDocumento}`);
+    navigate(`/documenti-da-firmare/firma-documento/${codiceDocumento}`);
 };
 
 export const handleViewDocument = (navigate, codiceDocumento) => {
@@ -7,7 +7,7 @@ export const handleViewDocument = (navigate, codiceDocumento) => {
 };
 
 export const handleCompileDocument = (navigate, codiceDocumento) => {
-    navigate(`compila-documento/${codiceDocumento}`);
+    navigate(`/documenti-da-compilare/compila-documento/${codiceDocumento}`);
 };
 
 export const handleViewListDocument = (navigate, stato, codiceDocumento) => {
