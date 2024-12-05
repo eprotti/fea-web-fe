@@ -41,10 +41,10 @@ const Notifications = () => {
             onClick={() => toggleNotification(index)} // Gestione clic per aprire/chiudere
           >
             <div className='header-notify'>
-              <h5 style={{ margin: "0px", marginRight: "5px" }}>
-                {notification.type === "success" && <FaCheckCircle size={16} style={{marginRight: "10px", verticalAlign: "unset"}} />}
-                {notification.type === "error" && <FaTimesCircle size={16} style={{marginRight: "10px", verticalAlign: "unset"}} />}
-                <strong style={{ fontSize: "large", textTransform: "uppercase", color: notification.type === "success" ? '#0a5' : '#cc0000' }}>
+              <h5 style={{ margin: "0px", marginRight: "5px", whiteSpace: "nowrap" }}>
+                {notification.type === "success" && <FaCheckCircle size={16} style={{marginRight: "5px", verticalAlign: "unset", color: "#0a5"}} />}
+                {notification.type === "error" && <FaTimesCircle size={16} style={{marginRight: "5px", verticalAlign: "unset", color: "#cc0000"}} />}
+                <strong style={{ fontSize: "medium", textTransform: "uppercase", color: notification.type === "success" ? '#0a5' : '#cc0000' }}>
                   {notification.type}
                 </strong>
               </h5>
