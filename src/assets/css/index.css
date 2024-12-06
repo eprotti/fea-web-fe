@@ -284,7 +284,7 @@ header {
 .page-header h1 a,
 .page-header h1 a:hover {
   color: #fff !important;
-  font-size: xxx-large;
+  font-size: larger;
   text-decoration: none;
 }
 
