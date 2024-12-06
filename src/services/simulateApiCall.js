@@ -1,4 +1,3 @@
-// src/utils/simulateApiCall.js
 const getFormattedDate = () => {
   const today = new Date();
   const year = today.getFullYear();

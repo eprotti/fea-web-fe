@@ -2,9 +2,9 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaCalendar, FaChevronRight, FaEye, FaFileAlt, FaFileSignature, FaPen } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import StatoDocumento from '../enum/statoDocumento';
-import { isExpiring, separatorDocumento } from '../utils/documentoUtil';
-import { handleCompileDocument, handleSignDocument, handleViewDocument } from '../utils/navigationUtil';
+import StatoDocumento from '../enum/StatoDocumento';
+import { isExpiring, separatorDocumento } from '../utils/DocumentoUtil';
+import { handleCompileDocument, handleSignDocument, handleViewDocument } from '../utils/NavigationUtil';
 
 const DocumentoCard = ({ codiceDocumento, titolo, descrizione, dataInserimento, dataScadenza, stato }) => {
 

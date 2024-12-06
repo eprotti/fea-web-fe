@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ListaDocumentoCard from '../components/ListaDocumentoCard';
 import PieChart from '../components/PieChart';
 import BarChart from '../components/BarChart';
-import StatoDocumento from '../enum/statoDocumento';
+import StatoDocumento from '../enum/StatoDocumento';
 
 const HomePage = () => {
 

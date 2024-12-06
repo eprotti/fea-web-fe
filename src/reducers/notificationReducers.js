@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION, CLEAR_NOTIFICATIONS, HIDE_NOTIFICATION, REMOVE_NOTIFICATION, MARK_AS_READ, MARK_AS_DISPLAYED } from '../actions/notificationActions';
+import { ADD_NOTIFICATION, CLEAR_NOTIFICATIONS, HIDE_NOTIFICATION, REMOVE_NOTIFICATION, MARK_AS_READ, MARK_AS_DISPLAYED } from '../actions/NotificationActions';
 
 // Stato iniziale: array vuoto per tenere traccia delle notifiche
 const initialState = [];

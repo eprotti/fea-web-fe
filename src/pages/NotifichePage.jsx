@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addNotification } from '../actions/notificationActions';
+import { addNotification } from '../actions/NotificationActions';
 import Notifications from '../components/Notifications';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 

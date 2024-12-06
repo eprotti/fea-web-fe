@@ -3,10 +3,10 @@ import { Card, ProgressBar, Table } from 'react-bootstrap';
 import { FaEye, FaFileAlt, FaFileSignature, FaPen, FaPencilAlt, FaSignature } from 'react-icons/fa'; // Icone per Dettaglio e Firma
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addNotification } from '../actions/notificationActions';
-import StatoDocumento from '../enum/statoDocumento';
-import { isExpiring, separatorDocumento, truncateTitle } from '../utils/documentoUtil';
-import { handleCompileDocument, handleSignDocument, handleViewListDocument } from '../utils/navigationUtil';
+import { addNotification } from '../actions/NotificationActions';
+import StatoDocumento from '../enum/StatoDocumento';
+import { isExpiring, separatorDocumento, truncateTitle } from '../utils/DocumentoUtil';
+import { handleCompileDocument, handleSignDocument, handleViewListDocument } from '../utils/NavigationUtil';
 
 const ListaDocumentoCard = ({ titolo, stato }) => {
 

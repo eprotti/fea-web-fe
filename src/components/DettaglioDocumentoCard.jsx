@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { isExpiring, separatorDocumento } from '../utils/documentoUtil';
+import { isExpiring, separatorDocumento } from '../utils/DocumentoUtil';
 
 const DettaglioDocumentoCard = ({ documento }) => {
 

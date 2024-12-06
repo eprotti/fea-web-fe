@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addNotification } from '../actions/notificationActions.js';
-import { separatorDocumento } from '../utils/documentoUtil';
+import { addNotification } from '../actions/NotificationActions.js';
+import { separatorDocumento } from '../utils/DocumentoUtil';
 
 const SpidButtonCard = ({ documento }) => {
 

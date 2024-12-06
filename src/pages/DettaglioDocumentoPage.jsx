@@ -3,15 +3,15 @@ import { Button, Card, Col, Container, ProgressBar, Row } from 'react-bootstrap'
 import { FaChevronLeft, FaFileAlt, FaFileSignature } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
-import { addNotification } from '../actions/notificationActions.js';
-import { StatoDocumento } from '../enum/statoDocumento';
+import { fetchDocuments } from '../actions/DocumentActions.js'; // Azione per caricare i documenti
+import { addNotification } from '../actions/NotificationActions.js';
+import { StatoDocumento } from '../enum/StatoDocumento';
 
 import DatiTecniciDocumentoCard from '../components/DatiTecniciDocumentoCard.jsx';
 import DettaglioDocumentoCard from '../components/DettaglioDocumentoCard.jsx';
 import FirmaDocumentoCard from '../components/FirmaDocumentoCard.jsx';
 import ScaricaDocumentoCard from '../components/ScaricaDocumentoCard.jsx';
-import { handleCompileDocument, handleSignDocument } from '../utils/navigationUtil.js';
+import { handleCompileDocument, handleSignDocument } from '../utils/NavigationUtil.js';
 
 const DettaglioDocumentoPage = () => {
 

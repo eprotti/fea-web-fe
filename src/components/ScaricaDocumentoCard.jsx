@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaDownload } from 'react-icons/fa';
-import { scaricaDocumento } from '../utils/documentoUtil';
+import { scaricaDocumento } from '../utils/DocumentoUtil';
 
 const ScaricaDocumentoCard = ({ documento }) => {
 

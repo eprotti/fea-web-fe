@@ -1,4 +1,4 @@
-import { StatoDocumento } from '../enum/statoDocumento';
+import { StatoDocumento } from '../enum/StatoDocumento';
 
 // Funzione per determinare se il documento è in scadenza (ad esempio, entro 3 giorni dalla scadenza)
 export const isExpiring = (dataScadenza, stato) => {

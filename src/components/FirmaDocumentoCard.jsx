@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Table } from 'react-bootstrap';
-import { separatorDocumento } from '../utils/documentoUtil';
+import { separatorDocumento } from '../utils/DocumentoUtil';
 
 const FirmaDocumentoCard = ({ documento, readonly }) => {
 

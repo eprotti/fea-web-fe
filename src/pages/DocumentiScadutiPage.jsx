@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions.js';
-import { addNotification } from '../actions/notificationActions';
+import { fetchDocuments } from '../actions/DocumentActions.js';
+import { addNotification } from '../actions/NotificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
-import StatoDocumento from '../enum/statoDocumento.js';
+import StatoDocumento from '../enum/StatoDocumento.js';
 
 const DocumentiScadutiPage = () => {
   const dispatch = useDispatch();

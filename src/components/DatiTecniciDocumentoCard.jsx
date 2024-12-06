@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { separatorDocumento } from '../utils/documentoUtil';
+import { separatorDocumento } from '../utils/DocumentoUtil';
 
 const DatiTecniciDocumentoCard = ({ documento }) => {
     // Stato per gestire l'apertura/chiusura

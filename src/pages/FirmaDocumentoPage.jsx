@@ -3,8 +3,8 @@ import { Col, Container, ProgressBar, Row } from 'react-bootstrap';
 import { FaChevronLeft } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchDocuments } from '../actions/documentActions.js'; // Azione per caricare i documenti
-import { addNotification } from '../actions/notificationActions.js';
+import { fetchDocuments } from '../actions/DocumentActions.js'; // Azione per caricare i documenti
+import { addNotification } from '../actions/NotificationActions.js';
 
 import DettaglioDocumentoCard from '../components/DettaglioDocumentoCard.jsx';
 import FirmaDocumentoCard from '../components/FirmaDocumentoCard.jsx';

@@ -3,8 +3,8 @@ import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title
 import { Card, ProgressBar } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions'; // Azione per caricare i documenti
-import { addNotification } from '../actions/notificationActions';
+import { fetchDocuments } from '../actions/DocumentActions'; // Azione per caricare i documenti
+import { addNotification } from '../actions/NotificationActions';
 
 // Registra i componenti necessari per il grafico
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);

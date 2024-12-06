@@ -1,4 +1,4 @@
-// src/reducers/documentReducer.js
+// src/reducers/DocumentReducer.js
 const initialState = {
     documents: [], // I documenti recuperati
     previousDocuments: [],

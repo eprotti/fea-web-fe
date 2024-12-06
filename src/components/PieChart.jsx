@@ -3,8 +3,8 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 import { Card, ProgressBar } from 'react-bootstrap';
 import { Doughnut } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/documentActions'; // Azione per caricare i documenti
-import { addNotification } from '../actions/notificationActions';
+import { fetchDocuments } from '../actions/DocumentActions'; // Azione per caricare i documenti
+import { addNotification } from '../actions/NotificationActions';
 
 // Registra i componenti necessari per il grafico
 ChartJS.register(ArcElement, Tooltip, Legend);

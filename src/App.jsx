@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify'; // Importa ToastContainer da React-Toastify
-import NotificationListener from './listener/NotificationListener';
+import NotificationListener from './listeners/NotificationListener';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header'; // Importa il componente Header
@@ -14,7 +14,7 @@ import DocumentiScadutiPage from './pages/DocumentiScadutiPage';
 import DocumentiAnnullatiPage from './pages/DocumentiAnnullatiPage';
 import NotifichePage from './pages/NotifichePage';
 import DettaglioDocumentoPage from './pages/DettaglioDocumentoPage';
-import DocumentListener from './listener/DocumentListener';
+import DocumentListener from './listeners/DocumentListener';
 import FirmaDocumentoPage from './pages/FirmaDocumentoPage';
 
 const App = () => {
