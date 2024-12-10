@@ -4,7 +4,7 @@ import { FaHome } from 'react-icons/fa'; // Importa l'icona del campanello
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom'; // useLocation per determinare la pagina corrente
 
-const Navigation = () => {
+const HorizontalbarNavigation = () => {
 
   const location = useLocation(); // Ottieni la posizione corrente della pagina
 
@@ -59,4 +59,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default HorizontalbarNavigation;

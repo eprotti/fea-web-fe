@@ -1,6 +1,6 @@
 import React from 'react';
 import Authentication from './Authentication';
-import Navigation from './Navigation';
+import HorizontalbarNavigation from './HorizontalbarNavigation';
 
 const Header = () => {
 
@@ -33,7 +33,7 @@ const Header = () => {
         </div>
       </div>
 
-      <Navigation />
+      <HorizontalbarNavigation />
 
     </header>
   );
