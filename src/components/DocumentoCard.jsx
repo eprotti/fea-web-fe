@@ -11,7 +11,7 @@ const DocumentoCard = ({ codiceDocumento, titolo, descrizione, dataInserimento, 
     const navigate = useNavigate();
 
     return (
-        <Card className="mb-4 custom-card">
+        <Card className="shadow mb-4 custom-card">
             <Card.Body>
                 {/* Aggiungi il badge in alto a destra se il documento è in scadenza */}
                 {isExpiring(dataScadenza, stato) && (

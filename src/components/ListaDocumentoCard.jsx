@@ -22,7 +22,7 @@ const ListaDocumentoCard = ({ titolo, stato }) => {
         return <Card.Title className="px-3 my-0">
             <h5 className='text-uppercase' style={{ color: "#5a6772" }}>{titolo}</h5>
 
-            <hr className={`thin-color-separator pb-2 mt-3 ${separatorDocumento(stato)}`} />
+            <hr className={`thin-color-separator pb-2 mt-2 ${separatorDocumento(stato)}`} />
 
         </Card.Title>
     };
@@ -30,7 +30,7 @@ const ListaDocumentoCard = ({ titolo, stato }) => {
     // Se i dati sono in caricamento, mostriamo lo spinner
     if (loading) {
         return (
-            <div className="document-list">
+            <div className="shadow document-list">
                 <Card className="mb-3 custom-card">
                     {cardTitle(titolo, stato)}
                     <Card.Body className='my-0 pt-0'>
@@ -51,7 +51,7 @@ const ListaDocumentoCard = ({ titolo, stato }) => {
     }
 
     return (
-        <div className="document-list">
+        <div className="shadow document-list">
             <Card className="mb-3 custom-card">
                 {cardTitle(titolo, stato)}
                 <Card.Body className='my-0 pt-0'>

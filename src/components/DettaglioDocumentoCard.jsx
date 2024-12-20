@@ -5,7 +5,7 @@ import { isExpiring, separatorDocumento } from '../utils/DocumentoUtil';
 const DettaglioDocumentoCard = ({ documento }) => {
 
     return (
-        <Card className="mb-4 custom-card">
+        <Card className="shadow mb-4 custom-card">
             {/* Aggiungi il badge in alto a destra se il documento è in scadenza */}
             {isExpiring(documento.dataScadenza, documento.stato) && (
                 <div className="expiring-badge pulse-expire-animation">In scadenza</div>

@@ -981,7 +981,8 @@ body {
   padding: 20px;
   width: 100%;
   transition: margin-left 0.3s ease;
-  background-color: #fff;
+  background-color: #efefef;
+  padding-top: 0;
 }
 
 .sidebar.collapsed+.content {

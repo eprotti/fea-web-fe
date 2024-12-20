@@ -57,7 +57,7 @@ const SidebarNavigation = ({ children }) => {
 
                     <li>
                         <a href="/documenti-da-firmare" className={`menu-item ${isActive('/documenti-da-firmare') ? 'active' : ''}`} >
-                            <FaFileSignature size={26} className="menu-icon" />
+                            <FaFileSignature size={26} className="menu-icon" style={{marginLeft: "4px"}} />
                             {!collapsed && <span className="menu-text">Documenti da firmare</span>}
                         </a>
                     </li>
@@ -106,7 +106,7 @@ const SidebarNavigation = ({ children }) => {
                 {/* Link Notifiche */}
                 <ul className={`list-unstyled ${collapsed ? 'collapsed' : ''}`}>
                     <li className="mt-auto"> {/* mt-auto per spingere questo elemento alla fine */}
-                        <a href="/notifiche" className={`menu-item ${isActive('/documenti-in-attesa') ? 'active' : ''}`} >
+                        <a href="/notifiche" className={`menu-item ${isActive('/notifiche') ? 'active' : ''}`} >
                             <FaBell size={24} className="menu-icon" />
 
                             {(collapsed && unreadNotifications > 0) && (

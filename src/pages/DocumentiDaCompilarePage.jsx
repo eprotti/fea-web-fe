@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDocuments } from '../actions/DocumentActions.js'; 
+import { fetchDocuments } from '../actions/DocumentActions.js';
 import { addNotification } from '../actions/NotificationActions';
 
 import DocumentoCard from '../components/DocumentoCard';
 import StatoDocumento from '../enum/StatoDocumento.js';
+import { useNavigate } from 'react-router-dom';
+import { FaChevronLeft } from 'react-icons/fa';
 
 const DocumentiDaCompilarePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { documents, loading, error } = useSelector((state) => state.documents);
   const statusesToFilter = [StatoDocumento.DA_COMPILARE];
@@ -23,7 +26,10 @@ const DocumentiDaCompilarePage = () => {
   if (loading) {
     return (
       <Container className="main-container pt-5 pb-5">
-        <h3>Documenti da compilare</h3>
+        <h3 className='mb-0 py-2 h3'>Documenti da compilare</h3>
+
+        <hr />
+        
         <div className="d-flex justify-content-center align-items-center" style={{ height: "200px" }} >
           <div style={{ width: '80%', padding: '20px' }}>
             <ProgressBar animated now={60} label="Caricamento..." />
@@ -40,12 +46,15 @@ const DocumentiDaCompilarePage = () => {
 
   return (
     <Container className="main-container pt-5 pb-5">
-      <h3>Documenti da compilare</h3>
+      <h3 className='mb-0 py-2 h3'>Documenti da compilare</h3>
+
+      <hr />
+
       <Row>
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>
 
-        {Array.isArray(filteredDocuments) && filteredDocuments.length > 0 ? (
+          {Array.isArray(filteredDocuments) && filteredDocuments.length > 0 ? (
             <>
               {filteredDocuments?.map((document) => (
                 <DocumentoCard
@@ -79,6 +88,19 @@ const DocumentiDaCompilarePage = () => {
               </Card.Text>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+
+      <Row>
+        {/* Colonna principale per il contenuto */}
+        <Col xs={12} md={8}>
+          <div className="mt-3">
+            <a onClick={() => navigate(-1)} rel="noopener noreferrer" style={{ cursor: "pointer", fontSize: "large" }} className="mt-3 text-primary">
+              <FaChevronLeft /> Torna indietro
+            </a>
+          </div>
+        </Col>
+        <Col xs={12} md={4}>
         </Col>
       </Row>
     </Container>

@@ -56,12 +56,12 @@ const App = () => {
       <Header />
 
       {/* Menu di navigazione laterale: rimuovere se attivo il componente HorizontalbarNavigation */}
-      {/* <SidebarNavigation>
+      <SidebarNavigation>
         {containerApp()}
-      </SidebarNavigation> */}
+      </SidebarNavigation>
 
       {/* Menu di navigazione orizzontale */}
-      {containerApp()}
+      {/* {containerApp()} */}
 
       {/* Contenitore per i toast */}
       <ToastContainer />

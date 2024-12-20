@@ -44,7 +44,7 @@ const SpidButtonCard = ({ documento }) => {
     };
 
     return (
-        <Card className="mb-4 custom-card">
+        <Card className="shadow mb-4 custom-card">
 
             <div className="card-body px-4 py-4">
 

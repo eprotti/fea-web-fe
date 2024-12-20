@@ -24,7 +24,7 @@ const PieChart = () => {
   // Se i dati sono in caricamento, mostriamo lo spinner
   if (loading) {
     return (
-      <Card className="mb-3 custom-card">
+      <Card className="shadow mb-3 custom-card">
         <Card.Title className="px-3 my-0">
           <h5 className='text-uppercase' style={{ color: "#5a6772" }}>Riepilogo documenti anno 2024</h5>
         </Card.Title>
@@ -88,7 +88,7 @@ const PieChart = () => {
   };
 
   return (
-    <Card className="mb-3 custom-card">
+    <Card className="shadow mb-3 custom-card">
       <Card.Title className="px-3 my-0">
         <h5 className='text-uppercase' style={{ color: "#5a6772" }}>Riepilogo documenti anno 2024</h5>
       </Card.Title>

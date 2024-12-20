@@ -10,8 +10,6 @@ const HomePage = () => {
   return (
     <Container className="main-container pt-5 pb-5">
 
-      <h3>Homepage</h3>
-
       <Row>
         {/* Colonna principale per il contenuto */}
         <Col xs={12} md={8}>

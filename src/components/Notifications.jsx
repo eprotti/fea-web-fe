@@ -27,7 +27,7 @@ const Notifications = () => {
   };
 
   return (
-    <Card>
+    <Card className='shadow'>
       <Card.Body>
         {notifications.map((notification, index) => (
           <div
