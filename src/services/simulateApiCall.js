@@ -268,6 +268,6 @@ export const simulateApiCall = () => {
       /* } */
 
       console.log("simulateApiCall")
-    }, 0); // 2 secondi di ritardo per simulare una chiamata asincrona
+    }, 2000); // 2 secondi di ritardo per simulare una chiamata asincrona
   });
 };

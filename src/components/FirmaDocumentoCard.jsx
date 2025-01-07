@@ -4,35 +4,6 @@ import { separatorDocumento } from '../utils/DocumentoUtil';
 
 const FirmaDocumentoCard = ({ documento, readonly }) => {
 
-    // Stato per i checkbox della tabella
-    const [checkedItems, setCheckedItems] = useState([]);
-
-    // Funzione per gestire il cambio di stato del checkbox "Seleziona tutto"
-    const handleSelectAll = (e) => {
-        if (e.target.checked) {
-            // Se "Seleziona tutto" è selezionato, seleziona tutti gli ID
-            const allItems = tableData.map(item => item.id);
-            setCheckedItems(allItems);
-        } else {
-            // Se "Seleziona tutto" non è selezionato, deseleziona tutti
-            setCheckedItems([]);
-        }
-    };
-
-    // Funzione per gestire il cambio di stato di un singolo checkbox
-    const handleCheckboxChange = (e) => {
-        const firmaId = e.target.value;
-        setCheckedItems((prevCheckedItems) => {
-            if (prevCheckedItems.includes(firmaId)) {
-                // Se l'ID è già selezionato, deselezionarlo
-                return prevCheckedItems.filter(id => id !== firmaId);
-            } else {
-                // Se l'ID non è selezionato, aggiungerlo
-                return [...prevCheckedItems, firmaId];
-            }
-        });
-    };
-
     return (
         <Card className="shadow mb-4 custom-card">
 
@@ -49,9 +20,7 @@ const FirmaDocumentoCard = ({ documento, readonly }) => {
                 <Table borderless>
                     <thead >
                         <tr>
-                            {readonly == "false" && (<th style={{ paddingLeft: "15px" }} className='col-1'>
-                                <input type='checkbox' onChange={handleSelectAll} checked={checkedItems.length === tableData.length} />
-                            </th>)}
+                            {readonly == "false" && (<th style={{ paddingLeft: "15px" }} className='col-1'><input type='checkbox' /></th>)}
                             <th className='col-7'>Descrizione</th>
                             <th className='d-none d-md-table-cell col-2 text-center'>Pagina</th>
                             <th className='col-2 text-center' >Obbligatoria</th>
@@ -61,10 +30,10 @@ const FirmaDocumentoCard = ({ documento, readonly }) => {
                         {documento.firme.map((firma) => (
                             <tr key={firma.id}>
                                 {readonly == "false" && (<td style={{ paddingLeft: "15px" }}>
-                                    <input type='checkbox' value={firma.id} onChange={handleCheckboxChange} checked={checkedItems.includes(firma.id)} />
+                                    <input type='checkbox' value={firma.id} />
                                 </td>)}
                                 <td>{firma.titolo}</td>
-                                <td className='d-none d-md-table-cell text-center'>{firma.pagina}</td>
+                                <td className='text-center'>{firma.pagina}</td>
                                 <td className='text-center'>{firma.obbligatoria ? "Si" : "No"}</td>
                             </tr>
                         ))}
